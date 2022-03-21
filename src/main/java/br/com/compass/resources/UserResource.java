@@ -18,17 +18,20 @@ public class UserResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(@FormParam("username") String username,
-                          @FormParam("password") String password) throws IOException {
-        return userService.login(username, password);
+                          @FormParam("password") String password,
+                          @QueryParam("name") String name) throws IOException {
+        return userService.login(username, password, name);
     }
 
     @POST
     @Path("register")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response register(@FormParam("username") String username,
+    public Response register(User user,
+                             @FormParam("username") String username,
                              @FormParam("password") String password,
                              @FormParam("name") String name){
-        return userService.register(new User(username, password, name));
+        if(user != null) return userService.register(user);
+        return userService.register(user = new User(username, password, name));
     }
 
     @Auth
