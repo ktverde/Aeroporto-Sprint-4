@@ -16,25 +16,25 @@
 <div class = "container" style="text-align-all: center">
     <div class="row">
         <div >
-            <form action="http://localhost:8080/api/user/login" method="POST" accept-charset="ISO-8859-1">
+            <form id="formlogin" action="http://localhost:8080/api/user/login" method="POST" accept-charset="ISO-8859-1">
                 <div class="form-group">
                     <hr color="silver">
                     <h2>Login</h2>
                 </div>
                 <div class="form-group">
-                    <label>Username: </label>
-                    <input type="text" class="form-control" name="username" placeholder="Username" required>
+                    <label>Username or email: </label>
+                    <input id="username" type="text" class="form-control" name="username" placeholder="Username" required>
                 </div>
                 <div class="form-group">
                     <label>Password: </label>
-                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+                    <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
                 </div>
                 <div class="form-group">
                     <hr color="silver">
                     <button type="submit" class="btn btn-success">Login</button>
                 </div>
             </form>
-            <form action="http://localhost:8080/register" method="POST" accept-charset="ISO-8859-1">
+            <form id="formregister"action="http://localhost:8080/register" method="POST" accept-charset="ISO-8859-1">
                 <button type="submit" class="btn btn-light">Register</button>
             </form>
 
@@ -50,8 +50,12 @@
                     var email=profile.getEmail();
                     document.getElementById("myImg").src = imagurl;
                     document.getElementById("name").innerHTML = name;
-                    document.getElementById("myP").style.visibility = "true";
-                    document.getElementById("status").innerHTML = 'Welcome '+name+'!<a href="http://localhost:8080/api/user/login?email='+email+'&name='+name+'"/>Continue with Google login</a></p>'
+                    document.getElementById("myP").style.visibility = "hidden";
+                    document.getElementById("status").innerHTML = 'Welcome '+name+'!<a href="http://localhost:8080/api/user/login"/>Continue with Google login</a></p>'
+                    //document.getElementById("formlogin").style.visibility = "hidden";
+                    document.getElementById("formregister").style.visibility = "hidden";
+                    document.getElementById("username").value = email;
+                    document.getElementById("password").value = "12345";
                 }
             </script>
             <button onclick="myFunction()">Sign Out</button>
