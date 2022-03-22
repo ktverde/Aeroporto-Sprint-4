@@ -16,7 +16,7 @@
 <div class = "container" style="text-align-all: center">
     <div class="row">
         <div >
-            <form id="formlogin" action="<%=request.getContextPath()%>/api/user/login" method="POST" accept-charset="ISO-8859-1">
+            <form name= "formlogin" id="formlogin" action="<%=request.getContextPath()%>/api/user/login" method="POST" accept-charset="ISO-8859-1">
                 <div class="form-group">
                     <hr color="silver">
                     <h2>Login</h2>
@@ -29,6 +29,9 @@
                     <label>Password: </label>
                     <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
                 </div>
+                <div>
+                    <input id="name" type="hidden" class="form-control" name="name">
+                </div>
                 <div class="form-group">
                     <hr color="silver">
                     <button type="submit" class="btn btn-success">Login</button>
@@ -37,25 +40,32 @@
             <form id="formregister"action="http://localhost:8080/register" method="POST" accept-charset="ISO-8859-1">
                 <button type="submit" class="btn btn-light">Register</button>
             </form>
+            <form name= "formGoogle" id="formGoogle" action="<%=request.getContextPath()%>/api/user/register" method="POST" accept-charset="ISO-8859-1">
+                    <input id="Gusername" type="text" class="form-control" name="username" placeholder="Username" required>
+                    <input id="Gpassword" type="password" class="form-control" name="password" placeholder="Password" required>
+                    <input id="Gname" type="hidden" class="form-control" name="name">
+            </form>
 
             <div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
                 <img id="myImg"><br>
-                <p id="name"></p>
+                <p id="showName"></p>
                 <div id="status"></div>
             <script type="text/javascript">
                 function onSignIn(googleUser) {
                     var profile = googleUser.getBasicProfile();
-                    var imagurl=profile.getImageUrl();
+                    var imagurl = profile.getImageUrl();
                     var name=profile.getName();
                     var email=profile.getEmail();
                     document.getElementById("myImg").src = imagurl;
                     document.getElementById("name").innerHTML = name;
                     document.getElementById("myP").style.visibility = "hidden";
-                    document.getElementById("status").innerHTML = 'Welcome '+name+'!<a href="<%=request.getContextPath()%>/api/user/login"/>Continue with Google login</a></p>'
+                    document.getElementById("continueBtn").style.visibility = "visible";
+                    document.getElementById("status").innerHTML = 'Welcome '+ name;
                     //document.getElementById("formlogin").style.visibility = "hidden";
-                    document.getElementById("formregister").style.visibility = "hidden";
-                    document.getElementById("username").value = email;
-                    document.getElementById("password").value = "12345";
+                    //document.getElementById("formregister").style.visibility = "hidden";
+                    document.getElementById("Gusername").value = email;
+                    document.getElementById("Gname").value = name;
+                    document.getElementById("Gpassword").value = "12345";
                 }
             </script>
             <button onclick="myFunction()">Sign Out</button>
@@ -63,6 +73,12 @@
                 function myFunction() {
                     gapi.auth2.getAuthInstance().disconnect();
                     location.reload();
+                }
+            </script>
+            <button id ="continueBtn" type="submit" style="visibility: hidden" onclick="submitGoogle()">Continue with Google</button>
+            <script>
+                function submitGoogle() {
+                    document.getElementById("formGoogle").submit();
                 }
             </script>
         </div>

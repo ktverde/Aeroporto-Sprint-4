@@ -33,7 +33,6 @@ public class UserDao
                 .getSingleResult();
     }
     public User readName(String username){
-
         try{
             String jpql = "SELECT u FROM User u WHERE u.username = :username";
             return em.createQuery(jpql, User.class)

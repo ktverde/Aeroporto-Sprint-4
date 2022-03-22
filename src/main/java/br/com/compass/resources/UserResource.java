@@ -2,6 +2,7 @@ package br.com.compass.resources;
 
 
 import br.com.compass.auth.Auth;
+import br.com.compass.dao.UserDao;
 import br.com.compass.models.User;
 import br.com.compass.services.UserService;
 import jakarta.ws.rs.*;
@@ -14,29 +15,26 @@ import java.io.IOException;
 public class UserResource {
     UserService userService = new UserService();
 
-    @Path("login")
+    @Path("/login")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(@FormParam("username") String username,
-                          @FormParam("password") String password,
-                          @QueryParam("name") String name) throws IOException {
-        return userService.login(username, password, name);
+                          @FormParam("password") String password) throws IOException {
+        return userService.login(new UserDao().readName(username), password);
     }
 
     @POST
-    @Path("register")
+    @Path("/register")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response register(User user,
-                             @FormParam("username") String username,
+    public Response register(@FormParam("username") String username,
                              @FormParam("password") String password,
                              @FormParam("name") String name){
-        if(user != null) return userService.register(user);
-        return userService.register(user = new User(username, password, name));
+        return userService.register(new User(username, password, name));
     }
 
     @Auth
     @GET
-    @Path("list")
+    @Path("/list")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listUsers(){
         return userService.listAllUsers();
