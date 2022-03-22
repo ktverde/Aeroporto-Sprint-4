@@ -20,7 +20,7 @@
                 </div>
                 <br>
                 <div class="error-actions">
-                    <a href="http://www.localhost:8080/api/order/cart" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                    <a href="<%=request.getContextPath()%>" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
                         Take Me Home </a>
                 </div>
             </div>

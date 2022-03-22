@@ -14,13 +14,13 @@
     <div class = "container" style="text-align-all: center">
         <div class="row">
             <div >
-                <form action="http://localhost:8080/api/user/register" method="POST" accept-charset="ISO-8859-1">
+                <form action="<%=request.getContextPath()%>/api/user/register" method="POST" accept-charset="ISO-8859-1">
                     <div class="form-group">
                         <hr color="silver">
                         <h2>Register</h2>
                     </div>
                     <div class="form-group">
-                        <label>Full name: </label>
+                        <label>Full name:</label>
                         <input type="text" class="form-control" name="name" placeholder="Name" required>
                     </div>
                     <div class="form-group">
