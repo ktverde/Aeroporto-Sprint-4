@@ -34,9 +34,9 @@ public class UserService {
 
                 NewCookie cookie1 = new NewCookie("user", user.getUserId().toString(), "/", "localhost", "user", 60*60, false, true);
                 NewCookie cookie2 = new NewCookie("token", "Bearer " + jwtToken, "/", "localhost", "token", 60*60, false, true);
-                return Response.seeOther(URI.create("http://localhost:8080/sucess.jsp")).cookie(cookie1,cookie2).entity(jwtToken).build();
+                return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded/sucess.jsp")).cookie(cookie1,cookie2).entity(jwtToken).build();
             }
-            return Response.seeOther(URI.create("http://localhost:8080/api/user/register")).entity(new User(username, password, name)).build();
+            return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded/api/user/register")).entity(new User(username, password, name)).build();
         }
         catch(Exception ex)
         {
@@ -52,7 +52,7 @@ public class UserService {
         }
 
         dao.save(user);
-        return Response.seeOther(URI.create("http://localhost:8080/sucess.jsp")).entity("Usuario cadastrado com sucesso!").build();
+        return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded/sucess.jsp")).entity("Usuario cadastrado com sucesso!").build();
     }
 
     public Response listAllUsers() {
