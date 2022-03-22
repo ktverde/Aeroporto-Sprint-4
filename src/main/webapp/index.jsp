@@ -16,7 +16,7 @@
 <div class = "container" style="text-align-all: center">
     <div class="row">
         <div >
-            <form id="formlogin" action="http://localhost:8080/api/user/login" method="POST" accept-charset="ISO-8859-1">
+            <form id="formlogin" action="<%=request.getContextPath()%>/api/user/login" method="POST" accept-charset="ISO-8859-1">
                 <div class="form-group">
                     <hr color="silver">
                     <h2>Login</h2>
@@ -51,7 +51,7 @@
                     document.getElementById("myImg").src = imagurl;
                     document.getElementById("name").innerHTML = name;
                     document.getElementById("myP").style.visibility = "hidden";
-                    document.getElementById("status").innerHTML = 'Welcome '+name+'!<a href="http://localhost:8080/api/user/login"/>Continue with Google login</a></p>'
+                    document.getElementById("status").innerHTML = 'Welcome '+name+'!<a href="<%=request.getContextPath()%>/api/user/login"/>Continue with Google login</a></p>'
                     //document.getElementById("formlogin").style.visibility = "hidden";
                     document.getElementById("formregister").style.visibility = "hidden";
                     document.getElementById("username").value = email;
