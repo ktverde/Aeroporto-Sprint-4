@@ -25,15 +25,6 @@ public class Plane {
         populateSeats();
     }
 
-    private void populateSeats(){
-        int i=0;
-        while(i<186){
-            Seat seat= new Seat();
-            seats.add(seat);
-            i++;
-        }
-    }
-
     public int getId() {
         return id;
     }
@@ -54,7 +45,6 @@ public class Plane {
     public void setFlightCourse(FlightCourse flightCourse) {
         this.flightCourse = flightCourse;
     }
-
 
     private void populateSeats(){
         int i=0;
