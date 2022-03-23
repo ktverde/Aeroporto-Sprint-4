@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Andre
+  Date: 23/03/2022
+  Time: 08:54
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Flights List</title>
+</h:head>
+
+<h:body>
+    <h:dataTable var="plane" value="#{flightListBean.planes}">
+        <h:column>
+            <f:facet name="header">Id</f:facet>
+            #{plane.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Origin</f:facet>
+            #{plane.flightCourse.origin}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Destiny</f:facet>
+            #{plane.flightCourse.destiny}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Seats</f:facet>
+            <ui:repeat value="#{plane.seats}" var="seat">
+                #{seat.id} #{seat.available},
+            </ui:repeat>
+        </h:column>
+
+    </h:dataTable>
+
+</h:body>
+
+</html>

@@ -54,4 +54,24 @@ public class Plane {
     public void setFlightCourse(FlightCourse flightCourse) {
         this.flightCourse = flightCourse;
     }
+
+
+    private void populateSeats(){
+        int i=0;
+        while(i<186){
+            Seat seat= new Seat();
+            seats.add(seat);
+            i++;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Plane{" +
+                "id=" + id +
+                ", flightCourse=" + flightCourse +
+                ", seats=" + seats +
+                '}';
+    }
+
 }

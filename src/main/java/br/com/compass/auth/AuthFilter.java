@@ -1,7 +1,7 @@
 package br.com.compass.auth;
 
 
-import br.com.compass.Key;
+import br.com.compass.util.Key;
 import io.jsonwebtoken.Jwts;
 import jakarta.annotation.Priority;
 import jakarta.ws.rs.Priorities;

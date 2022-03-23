@@ -1,6 +1,6 @@
 package br.com.compass.services;
 
-import br.com.compass.Key;
+import br.com.compass.util.Key;
 import br.com.compass.dao.UserDao;
 import br.com.compass.models.User;
 import io.jsonwebtoken.Jwts;
@@ -8,7 +8,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.ws.rs.core.NewCookie;
 import jakarta.ws.rs.core.Response;
 
-import javax.net.ssl.SSLEngineResult;
 import java.net.URI;
 import java.time.LocalDateTime;
 import java.time.ZoneId;

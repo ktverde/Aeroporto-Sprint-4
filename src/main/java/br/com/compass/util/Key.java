@@ -1,4 +1,4 @@
-package br.com.compass;
+package br.com.compass.util;
 
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;

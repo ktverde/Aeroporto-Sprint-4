@@ -37,7 +37,7 @@
                     <button type="submit" class="btn btn-success">Login</button>
                 </div>
             </form>
-            <form id="formregister"action="http://localhost:8080/register" method="POST" accept-charset="ISO-8859-1">
+            <form id="formregister"action="<%=request.getContextPath()%>/register.jsp" method="POST" accept-charset="ISO-8859-1">
                 <button type="submit" class="btn btn-light">Register</button>
             </form>
             <form name= "formGoogle" id="formGoogle" action="<%=request.getContextPath()%>/api/user/register" method="POST" accept-charset="ISO-8859-1">
