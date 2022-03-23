@@ -2,6 +2,7 @@ package br.com.compass.resources;
 
 
 import br.com.compass.auth.Auth;
+import br.com.compass.dao.UserDao;
 import br.com.compass.models.User;
 import br.com.compass.services.UserService;
 import jakarta.ws.rs.*;
@@ -18,9 +19,8 @@ public class UserResource {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(@FormParam("username") String username,
-                          @FormParam("password") String password,
-                          @QueryParam("name") String name) throws IOException {
-        return userService.login(username, password, name);
+                          @FormParam("password") String password) throws IOException {
+        return userService.login(new UserDao().readName(username), password);
     }
 
     @POST
@@ -29,8 +29,6 @@ public class UserResource {
     public Response register(@FormParam("username") String username,
                              @FormParam("password") String password,
                              @FormParam("name") String name){
-/*        if(user != null) return userService.register(user);*/
-
         return userService.register(new User(username, password, name));
     }
 
