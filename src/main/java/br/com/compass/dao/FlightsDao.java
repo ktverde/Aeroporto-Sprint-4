@@ -6,6 +6,7 @@ import jakarta.inject.Inject;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 public class FlightsDao {
 
@@ -19,5 +20,10 @@ public class FlightsDao {
         em.getTransaction().begin();
         em.persist(plane);
         em.getTransaction().commit();
+    }
+
+    public List<Plane> getAllFlights() {
+        String jpql = "SELECT Distinct(p) FROM Plane as p JOIN FETCH p.seats";
+        return em.createQuery(jpql,Plane.class).getResultList();
     }
 }
