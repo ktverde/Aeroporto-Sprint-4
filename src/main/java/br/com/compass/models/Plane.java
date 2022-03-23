@@ -57,4 +57,13 @@ public class Plane {
             i++;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Plane{" +
+                "id=" + id +
+                ", flightCourse=" + flightCourse +
+                ", seats=" + seats +
+                '}';
+    }
 }

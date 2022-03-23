@@ -39,4 +39,13 @@ public class FlightCourse {
     public void setOrigin(String origin) {
         this.origin = origin;
     }
+
+    @Override
+    public String toString() {
+        return "FlightCourse{" +
+                "id=" + id +
+                ", destiny='" + destiny + '\'' +
+                ", origin='" + origin + '\'' +
+                '}';
+    }
 }

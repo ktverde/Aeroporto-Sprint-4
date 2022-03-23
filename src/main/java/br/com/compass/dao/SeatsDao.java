@@ -1,23 +1,22 @@
 package br.com.compass.dao;
 
 import br.com.compass.factory.EManagerFactory;
-import br.com.compass.models.Plane;
-import jakarta.inject.Inject;
+import br.com.compass.models.Seat;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
-public class FlightsDao {
+public class SeatsDao {
 
     private EntityManager em;
 
-    public FlightsDao() {
+    public SeatsDao() {
         this.em = EManagerFactory.getEm();
     }
 
-    public void save(Plane plane){
+    public void save(Seat seats){
         em.getTransaction().begin();
-        em.persist(plane);
+        em.persist(seats);
         em.getTransaction().commit();
     }
+    
 }

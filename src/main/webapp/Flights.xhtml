@@ -21,15 +21,15 @@
     <h:form>
         <div>
             <h:outputLabel value="Flight Origin"/>
-            <h:inputText value="#{FlightFormBean.flightCourse.origin}" required="true" id="origin"/>
+            <h:inputText value="#{flightFormBean.flightCourse.origin}" required="true" id="origin"/>
             <h:message for="origin"/>
         </div>
         <div>
-            <h:outputLabel value="Título"/>
-            <h:inputText value="#{FlightFormBean.flightCourse.destiny}" required="true" id="destiny"/>
+            <h:outputLabel value="Flight Destiny"/>
+            <h:inputText value="#{flightFormBean.flightCourse.destiny}" required="true" id="destiny"/>
             <h:message for="destiny"/>
         </div>
-        <h:commandButton value="Cadastrar" action="#{FligntFormBean.save()}"/>
+        <h:commandButton value="Cadastrar" action="#{flightFormBean.save()}"/>
     </h:form>
 
 
