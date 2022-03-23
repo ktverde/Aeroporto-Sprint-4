@@ -13,13 +13,13 @@ public class Ticket {
     private int id;
     @OneToOne
     private User client;
-    private int planeId;
     @OneToOne
     private FlightCourse flightCourse;
     private Calendar emissionDate;
     private Calendar flightDate;
-    @OneToOne
-    private Seat seat;
+
+    private int planeId;
+    private String seat;
 
     public Ticket() {
     }
@@ -72,11 +72,11 @@ public class Ticket {
         this.flightDate = flightDate;
     }
 
-    public Seat getSeat() {
+    public String getSeat() {
         return seat;
     }
 
-    public void setSeat(Seat seat) {
+    public void setSeat(String seat) {
         this.seat = seat;
     }
 

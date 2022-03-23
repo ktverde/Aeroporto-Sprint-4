@@ -21,11 +21,13 @@ public class UserService {
         try{
             if(user != null && user.getPassword().equals(password))
             {
-                String jwtToken = createToken(user.getUsername());
+                System.out.println("Usuario no login : "+ user);
+                String jwtToken = createToken(user.getUserId());
+                System.out.println("Criou token");
 
                 NewCookie cookie1 = new NewCookie("user", user.getUserId().toString(), "/", "localhost", "user", 60*60, false, true);
                 NewCookie cookie2 = new NewCookie("token", "Bearer " + jwtToken, "/", "localhost", "token", 60*60, false, true);
-                return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded/sucess.jsp")).cookie(cookie1,cookie2).entity(jwtToken).build();
+                return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded/api/order/makeOrder")).cookie(cookie1,cookie2).entity(jwtToken).build();
             }
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
@@ -35,9 +37,9 @@ public class UserService {
         }
     }
 
-    private String createToken(String username) {
+    private String createToken(Long id) {
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(String.valueOf(id))
                 .setIssuer("localhost:8080")
                 .setIssuedAt(new Date())
                 .setExpiration(Date.from(LocalDateTime.now().plusMinutes(15L)
@@ -49,9 +51,9 @@ public class UserService {
 
     public Response register(User user) {
         User i = dao.readName(user.getUsername());
-
+        System.out.println(i);
         if(i != null){
-            login(i, i.getPassword());
+            return login(i, i.getPassword());
         }
 
         dao.save(user);

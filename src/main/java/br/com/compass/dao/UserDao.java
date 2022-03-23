@@ -6,6 +6,7 @@ import br.com.compass.factory.EManagerFactory;
 import br.com.compass.models.User;
 
 import javax.persistence.EntityManager;
+import java.util.Arrays;
 import java.util.List;
 
 public class UserDao
@@ -35,10 +36,13 @@ public class UserDao
     public User readName(String username){
         try{
             String jpql = "SELECT u FROM User u WHERE u.username = :username";
+            System.out.println(username);
             return em.createQuery(jpql, User.class)
                     .setParameter("username", username)
                     .getSingleResult();
         }catch(Exception e){
+            System.out.println(Arrays.toString(e.getStackTrace()));
+            System.out.println(e.getMessage());
             return null;
         }
     }

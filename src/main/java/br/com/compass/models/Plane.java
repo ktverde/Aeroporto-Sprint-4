@@ -25,10 +25,18 @@ public class Plane {
         populateSeats();
     }
 
+    private void populateSeats(){
+        int i=0;
+        while(i<186){
+            Seat seat= new Seat();
+            seats.add(seat);
+            i++;
+        }
+    }
+
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -36,7 +44,6 @@ public class Plane {
     public List<Seat> getSeats() {
         return seats;
     }
-
     public void setSeats(List<Seat> seats) {
         this.seats = seats;
     }
@@ -44,10 +51,10 @@ public class Plane {
     public FlightCourse getFlightCourse() {
         return flightCourse;
     }
-
     public void setFlightCourse(FlightCourse flightCourse) {
         this.flightCourse = flightCourse;
     }
+
 
     private void populateSeats(){
         int i=0;
@@ -66,4 +73,5 @@ public class Plane {
                 ", seats=" + seats +
                 '}';
     }
+
 }
