@@ -19,7 +19,6 @@ public class FlightCourse {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -27,7 +26,6 @@ public class FlightCourse {
     public String getDestiny() {
         return destiny;
     }
-
     public void setDestiny(String destiny) {
         this.destiny = destiny;
     }
@@ -35,7 +33,6 @@ public class FlightCourse {
     public String getOrigin() {
         return origin;
     }
-
     public void setOrigin(String origin) {
         this.origin = origin;
     }

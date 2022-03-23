@@ -25,30 +25,6 @@ public class Plane {
         populateSeats();
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public List<Seat> getSeats() {
-        return seats;
-    }
-
-    public void setSeats(List<Seat> seats) {
-        this.seats = seats;
-    }
-
-    public FlightCourse getFlightCourse() {
-        return flightCourse;
-    }
-
-    public void setFlightCourse(FlightCourse flightCourse) {
-        this.flightCourse = flightCourse;
-    }
-
     private void populateSeats(){
         int i=0;
         while(i<186){
@@ -56,5 +32,26 @@ public class Plane {
             seats.add(seat);
             i++;
         }
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public List<Seat> getSeats() {
+        return seats;
+    }
+    public void setSeats(List<Seat> seats) {
+        this.seats = seats;
+    }
+
+    public FlightCourse getFlightCourse() {
+        return flightCourse;
+    }
+    public void setFlightCourse(FlightCourse flightCourse) {
+        this.flightCourse = flightCourse;
     }
 }
