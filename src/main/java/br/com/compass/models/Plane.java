@@ -1,11 +1,11 @@
 package br.com.compass.models;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name="planes")
@@ -16,13 +16,24 @@ public class Plane {
     private int id;
     @OneToOne
     private FlightCourse flightCourse;
-    @OneToMany
+    @ElementCollection
+    @CollectionTable(name = "planes_seats_mapping",
+            joinColumns = {@JoinColumn(name = "plane_id", referencedColumnName = "id")})
+    @MapKeyColumn(name = "seat_number")
+    @Column(name = "avilable")
+    private Map<Integer, Boolean> seats= new HashMap<Integer,Boolean>();
+
+
+   /* @OneToMany
     @Size(max=186)
-    private List<Seat> seats;
+    private List<Seat> seats;*/
+
+/*    public Plane() {
+        *//*this.seats=new ArrayList<>();*//*
+        populateSeats();
+    }*/
 
     public Plane() {
-        this.seats=new ArrayList<>();
-        populateSeats();
     }
 
     public int getId() {
@@ -32,12 +43,14 @@ public class Plane {
         this.id = id;
     }
 
+/*
     public List<Seat> getSeats() {
         return seats;
     }
     public void setSeats(List<Seat> seats) {
         this.seats = seats;
     }
+*/
 
     public FlightCourse getFlightCourse() {
         return flightCourse;
@@ -46,7 +59,7 @@ public class Plane {
         this.flightCourse = flightCourse;
     }
 
-
+/*
     private void populateSeats(){
         int i=0;
         while(i<186){
@@ -54,6 +67,14 @@ public class Plane {
             seats.add(seat);
             i++;
         }
+    }*/
+
+    public Map<Integer, Boolean> getSeats() {
+        return seats;
+    }
+
+    public void setSeats(Map<Integer, Boolean> seats) {
+        this.seats = seats;
     }
 
     @Override
