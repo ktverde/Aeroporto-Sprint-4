@@ -1,11 +1,11 @@
 package br.com.compass.models;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table(name="planes")
@@ -16,43 +16,58 @@ public class Plane {
     private int id;
     @OneToOne
     private FlightCourse flightCourse;
-    @OneToMany
-    @Size(max=186)
-    private List<Seat> seats;
+    @ElementCollection
+    @CollectionTable(name = "planes_seats_mapping",
+            joinColumns = {@JoinColumn(name = "plane_id", referencedColumnName = "id")})
+    @MapKeyColumn(name = "seat_number")
+    @Column(name = "avilable")
+    private Map<Integer, Boolean> seats;
+
+    boolean editable;
+
+    public boolean isEditable() {
+        return editable;
+    }
+    public void setEditable(boolean editable) {
+        this.editable = editable;
+    }
+
 
     public Plane() {
-        this.seats=new ArrayList<>();
+        seats=new HashMap<Integer,Boolean>();
         populateSeats();
+    }
+
+    private void populateSeats(){
+        for(int i = 1; i<=186; i++) {
+            this.seats.put(i, true);
+        }
     }
 
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
-    }
-
-    public List<Seat> getSeats() {
-        return seats;
-    }
-    public void setSeats(List<Seat> seats) {
-        this.seats = seats;
     }
 
     public FlightCourse getFlightCourse() {
         return flightCourse;
     }
+
     public void setFlightCourse(FlightCourse flightCourse) {
         this.flightCourse = flightCourse;
     }
 
-    private void populateSeats(){
-        int i=0;
-        while(i<186){
-            Seat seat= new Seat();
-            seats.add(seat);
-            i++;
-        }
+    feature/flights
+    public Map<Integer, Boolean> getSeats() {
+        return seats;
+    }
+
+    public void setSeats(Map<Integer, Boolean> seats) {
+        this.seats = seats;
+
     }
 
     @Override

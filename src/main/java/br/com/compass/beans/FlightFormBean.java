@@ -3,14 +3,11 @@ package br.com.compass.beans;
 
 import br.com.compass.dao.FlightCourseDao;
 import br.com.compass.dao.FlightsDao;
-import br.com.compass.dao.SeatsDao;
 import br.com.compass.models.FlightCourse;
 import br.com.compass.models.Plane;
 import jakarta.enterprise.inject.Model;
 import jakarta.faces.annotation.FacesConfig;
 import jakarta.inject.Inject;
-
-import javax.transaction.Transactional;
 
 @FacesConfig
 @Model
@@ -23,19 +20,17 @@ public class FlightFormBean {
     private FlightsDao flightsDao;
     @Inject
     private FlightCourseDao flightCourseDao;
-    @Inject
-    private SeatsDao seatsDao;
 
     public void save(){
         plane.setFlightCourse(flightCourse);
-        //System.out.println(plane);
-        flightCourseDao.save(flightCourse);
-        plane.setFlightCourse(flightCourse);
 
-        plane.getSeats().stream().forEach(s->{
-           seatsDao.save(s);
-        });
-
+        FlightCourse fc = flightCourseDao.verify(flightCourse);
+        if(fc==null) {
+            flightCourseDao.save(flightCourse);
+            plane.setFlightCourse(flightCourse);
+        }else{
+            plane.setFlightCourse(fc);
+        }
         flightsDao.save(plane);
     }
 
@@ -54,4 +49,5 @@ public class FlightFormBean {
     public void setPlane(Plane plane) {
         this.plane = plane;
     }
+
 }
