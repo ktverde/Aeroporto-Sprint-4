@@ -26,4 +26,11 @@ public class FlightsDao {
         String jpql = "SELECT Distinct(p) FROM Plane as p JOIN FETCH p.seats";
         return em.createQuery(jpql,Plane.class).getResultList();
     }
+
+    public void delete(Plane plane){
+        em.getTransaction().begin();
+        plane=em.merge(plane);
+        em.remove(plane);
+        em.getTransaction().commit();
+    }
 }

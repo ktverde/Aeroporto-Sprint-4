@@ -19,28 +19,27 @@
 </h:head>
 
 <h:body>
-    <h:dataTable var="plane" value="#{flightListBean.planes}">
-        <h:column>
-            <f:facet name="header">Id</f:facet>
-            #{plane.id}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Origin</f:facet>
-            #{plane.flightCourse.origin}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Destiny</f:facet>
-            #{plane.flightCourse.destiny}
-        </h:column>
-        <h:column>
-            <f:facet name="header">Seats</f:facet>
-            <ui:repeat value="#{plane.seats}" var="seat">
-                #{seat.id} #{seat.available},
-            </ui:repeat>
-        </h:column>
+    <h:form>
+        <h:dataTable var="plane" value="#{flightListBean.planes}">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                #{plane.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Origin</f:facet>
+                #{plane.flightCourse.origin}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Destiny</f:facet>
+                #{plane.flightCourse.destiny}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Options</f:facet>
+                <h:commandButton value="deletar" action="#{flightListBean.deletePlane(plane)}"/>
+            </h:column>
 
-    </h:dataTable>
-
+        </h:dataTable>
+    </h:form>
 </h:body>
 
 </html>
