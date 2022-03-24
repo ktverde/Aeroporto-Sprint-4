@@ -22,6 +22,10 @@ public class FlightListBean {
         return planes;
     }
 
+    public void deletePlane(Plane plane){
+        flightsDao.delete(plane);
+    }
+
     public void setPlanes(List<Plane> planes) {
         this.planes = planes;
     }
