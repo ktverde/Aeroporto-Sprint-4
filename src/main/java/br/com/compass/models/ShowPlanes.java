@@ -15,7 +15,10 @@ public class ShowPlanes
         mainPlanes.add(fc);
     }
     public void addOther(FlightCourse fc){
-        otherPlanes.add(fc);
+        for (FlightCourse flight: mainPlanes) {
+            if(fc.getId() != flight.getId())
+                otherPlanes.add(fc);
+        }
     }
 
 
