@@ -1,7 +1,7 @@
 package br.com.compass.tests;
 
 import br.com.compass.dao.FlightCourseDao;
-import br.com.compass.dao.FlightsDao;
+import br.com.compass.dao.PlanesDao;
 import br.com.compass.models.FlightCourse;
 import br.com.compass.models.Plane;
 
@@ -30,7 +30,7 @@ public class PlaneInstaceTest {
             map.put(i, true);
         }
         plane.setSeats(map);
-        FlightsDao flightsDao = new FlightsDao();
-        flightsDao.save(plane);
+        PlanesDao planesDao = new PlanesDao();
+        planesDao.save(plane);
     }
 }
