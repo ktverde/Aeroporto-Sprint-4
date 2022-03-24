@@ -19,7 +19,7 @@ public class Ticket {
     private Calendar flightDate;
 
     private int planeId;
-    private String seat;
+    private int seat;
 
     public Ticket() {
     }
@@ -72,11 +72,11 @@ public class Ticket {
         this.flightDate = flightDate;
     }
 
-    public String getSeat() {
+    public int getSeat() {
         return seat;
     }
 
-    public void setSeat(String seat) {
+    public void setSeat(int seat) {
         this.seat = seat;
     }
 

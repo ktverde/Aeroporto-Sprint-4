@@ -1,5 +1,7 @@
 package br.com.compass.models;
 
+import jakarta.validation.constraints.NotBlank;
+
 import javax.persistence.*;
 import java.util.IdentityHashMap;
 
@@ -10,7 +12,9 @@ public class FlightCourse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotBlank
     private String destiny;
+    @NotBlank
     private String origin;
 
     public FlightCourse() {

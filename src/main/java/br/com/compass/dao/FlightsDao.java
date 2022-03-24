@@ -33,4 +33,11 @@ public class FlightsDao {
         em.remove(plane);
         em.getTransaction().commit();
     }
+
+    public void update(Plane plane) {
+        em.getTransaction().begin();
+        plane = em.merge(plane);
+        em.persist(plane);
+        em.getTransaction().commit();
+    }
 }

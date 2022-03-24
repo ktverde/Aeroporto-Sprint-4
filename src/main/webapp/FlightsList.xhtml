@@ -5,6 +5,7 @@
   Date: 23/03/2022
   Time: 08:54
 -->
+
 <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -23,22 +24,35 @@
         <h:dataTable var="plane" value="#{flightListBean.planes}">
             <h:column>
                 <f:facet name="header">Id</f:facet>
-                #{plane.id}
+                <h:outputText value="#{plane.id}"/>
             </h:column>
             <h:column>
                 <f:facet name="header">Origin</f:facet>
-                #{plane.flightCourse.origin}
+                <h:inputText value=" #{plane.flightCourse.origin}" size="10" id="origin" rendered="#{plane.editable}" />
+                <h:outputText value=" #{plane.flightCourse.origin}" rendered="#{not plane.editable}" />
             </h:column>
             <h:column>
                 <f:facet name="header">Destiny</f:facet>
-                #{plane.flightCourse.destiny}
+                <h:inputText value="#{plane.flightCourse.destiny}" size="10" id="destiny" rendered="#{plane.editable}" />
+                <h:outputText value="#{plane.flightCourse.destiny}" rendered="#{not plane.editable}" />
+            </h:column>
+            <h:column>
+                    <f:facet name="header">Seats</f:facet>
+                    <ui:repeat value="#{flightListBean.getMapInList(plane)}" var="seat">
+                        Id:#{seat.key} Value:#{seat.value},
+                    </ui:repeat>
             </h:column>
             <h:column>
                 <f:facet name="header">Options</f:facet>
-                <h:commandButton value="deletar" action="#{flightListBean.deletePlane(plane)}"/>
+                <h:commandButton value="Deletar" action="#{flightListBean.deletePlane(plane)}"/>
+                <h:commandButton value="Editar" action="#{flightListBean.editAction(plane)}">
+                    <f:setPropertyActionListener
+                        target="#{flightListBean.plane}"
+                        value="#{plane}" />
+                </h:commandButton>
             </h:column>
-
         </h:dataTable>
+        <h:commandButton value="Save Changes" action="#{flightListBean.saveAction()}" rendered="#{not plane.editable}"/> <h:commandButton value="Cancel" action="#{flightListBean.cancelAction()}" rendered="#{not plane.editable}"/>
     </h:form>
 </h:body>
 

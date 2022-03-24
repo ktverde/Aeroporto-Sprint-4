@@ -21,53 +21,44 @@ public class Plane {
             joinColumns = {@JoinColumn(name = "plane_id", referencedColumnName = "id")})
     @MapKeyColumn(name = "seat_number")
     @Column(name = "avilable")
-    private Map<Integer, Boolean> seats= new HashMap<Integer,Boolean>();
+    private Map<Integer, Boolean> seats;
 
+    boolean editable;
 
-   /* @OneToMany
-    @Size(max=186)
-    private List<Seat> seats;*/
+    public boolean isEditable() {
+        return editable;
+    }
+    public void setEditable(boolean editable) {
+        this.editable = editable;
+    }
 
-/*    public Plane() {
-        *//*this.seats=new ArrayList<>();*//*
-        populateSeats();
-    }*/
 
     public Plane() {
+        seats=new HashMap<Integer,Boolean>();
+        populateSeats();
+    }
+
+    private void populateSeats(){
+        for(int i = 1; i<=186; i++) {
+            this.seats.put(i, true);
+        }
     }
 
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
 
-/*
-    public List<Seat> getSeats() {
-        return seats;
-    }
-    public void setSeats(List<Seat> seats) {
-        this.seats = seats;
-    }
-*/
-
     public FlightCourse getFlightCourse() {
         return flightCourse;
     }
+
     public void setFlightCourse(FlightCourse flightCourse) {
         this.flightCourse = flightCourse;
     }
-
-/*
-    private void populateSeats(){
-        int i=0;
-        while(i<186){
-            Seat seat= new Seat();
-            seats.add(seat);
-            i++;
-        }
-    }*/
 
     public Map<Integer, Boolean> getSeats() {
         return seats;
