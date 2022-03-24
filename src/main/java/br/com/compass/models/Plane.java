@@ -60,12 +60,14 @@ public class Plane {
         this.flightCourse = flightCourse;
     }
 
+    feature/flights
     public Map<Integer, Boolean> getSeats() {
         return seats;
     }
 
     public void setSeats(Map<Integer, Boolean> seats) {
         this.seats = seats;
+
     }
 
     @Override
