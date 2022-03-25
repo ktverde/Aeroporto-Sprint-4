@@ -60,7 +60,6 @@ public class Plane {
         this.flightCourse = flightCourse;
     }
 
-    feature/flights
     public Map<Integer, Boolean> getSeats() {
         return seats;
     }
