@@ -19,8 +19,6 @@ import java.io.IOException;
 
 public class TesteEmail {
     private final static String key ="ad012412463ebe6448f914102da56b4a-0677517f-26205401";
-    private final static String sendgridKey="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";
-
 
    /* public static void main(String[] args) throws UnirestException{
         HttpResponse request  = Unirest.post("https://api.mailgun.net/v3/"+"localhost:8080/"+"/messages")
