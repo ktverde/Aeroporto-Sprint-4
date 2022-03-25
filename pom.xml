@@ -196,6 +196,30 @@
           <version>4.0.0.Final</version>
       </dependency>
 
+      <dependency>
+          <groupId>jakarta.mail</groupId>
+          <artifactId>jakarta.mail-api</artifactId>
+          <version>2.1.0</version>
+      </dependency>
+
+      <dependency>
+          <groupId>com.mashape.unirest</groupId>
+          <artifactId>unirest-java</artifactId>
+          <version>1.4.9</version>
+      </dependency>
+
+      <dependency>
+          <groupId>com.mailjet</groupId>
+          <artifactId>mailjet-client</artifactId>
+          <version>4.2.0</version>
+      </dependency>
+
+      <dependency>
+          <groupId>com.sendgrid</groupId>
+          <artifactId>sendgrid-java</artifactId>
+          <version>4.8.3</version>
+      </dependency>
+
   </dependencies>
 
   <build>
