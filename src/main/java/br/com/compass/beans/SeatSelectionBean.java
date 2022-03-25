@@ -23,6 +23,7 @@ public class SeatSelectionBean {
 
     }
 
+
     public Plane getPlane() {
         return plane;
     }
