@@ -80,6 +80,9 @@ public class Ticket {
         this.seat = seat;
     }
 
-
-
+    @Override
+    public String toString() {
+        return String.format("Your Ticket:\n\t%s, %s\nid:%d\nFlight Information:\n\t\tPlane Id:%d\n\t\tOrigin:%s to Destiny:%s\n\t\tFlight date:%s, Seat:%d\nTicket Emission Date:%s"
+                , client.getName(), client.getUsername(), planeId, flightCourse.getOrigin(), flightCourse.getDestiny(), flightDate, seat, emissionDate);
+    }
 }
