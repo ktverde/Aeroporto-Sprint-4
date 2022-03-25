@@ -2,6 +2,7 @@ package br.com.compass.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +25,7 @@ public class Plane {
     @Column(name = "available")
     private Map<Integer, Boolean> seats;
 
+    private BigDecimal value;
     private Date date;
 
     boolean editable;
@@ -58,6 +60,14 @@ public class Plane {
 
     public Date getDate() { return this.date; }
     public void setDate(Date date){ this.date = date; }
+
+    public BigDecimal getValue() {
+        return value;
+    }
+
+    public void setValue(BigDecimal value) {
+        this.value = value;
+    }
 
     @Override
     public String toString() {

@@ -1,30 +1,35 @@
 package br.com.compass.models;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ShowPlanes
 {
-    private List<FlightCourse> mainPlanes = new ArrayList<>();
-    private List<FlightCourse> otherPlanes = new ArrayList<>();
-
+    private List<Plane> mainPlanes = new ArrayList<>();
+    private List<Plane> otherPlanes = new ArrayList<>();
     public ShowPlanes() {
     }
 
-    public void addMain(FlightCourse fc){
-        mainPlanes.add(fc);
-    }
-    public void addOther(FlightCourse fc){
-        for (FlightCourse flight: mainPlanes) {
-            if(fc.getId() != flight.getId())
-                otherPlanes.add(fc);
-        }
+    public ShowPlanes(List<Plane> mainPlanes, List<Plane> otherPlanes) {
+        this.mainPlanes = mainPlanes;
+        this.otherPlanes = otherPlanes;
     }
 
+    public List<Plane> getMainPlanes() {
+        return mainPlanes;
+    }
 
-    public List<FlightCourse> getMainPlanes() { return mainPlanes; }
-    public void setMainPlanes(List<FlightCourse> mainPlanes) { this.mainPlanes = mainPlanes; }
+    public void setMainPlanes(List<Plane> mainPlanes) {
+        this.mainPlanes = mainPlanes;
+    }
 
-    public List<FlightCourse> getOtherPlanes() { return otherPlanes; }
-    public void setOtherPlanes(List<FlightCourse> otherPlanes) { this.otherPlanes = otherPlanes; }
+    public List<Plane> getOtherPlanes() {
+        return otherPlanes;
+    }
+
+    public void setOtherPlanes(List<Plane> otherPlanes) {
+        this.otherPlanes = otherPlanes;
+    }
 }

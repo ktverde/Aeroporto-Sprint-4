@@ -13,6 +13,8 @@ import jakarta.ws.rs.core.Response;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -33,8 +35,8 @@ public class OrderService
     }
 
     public Response searchFlights(String origin,String destiny, String originDate, String returnDate) {
-        List<Plane> mainPlanes = null;
-        List<Plane> otherPlanes = null;
+        List<Plane> mainPlanes = new ArrayList<>();
+        List<Plane> otherPlanes = new ArrayList<>();
 
         FlightCourse fc = flightCourseDao.verify(new FlightCourse(origin, destiny));
         System.out.println(fc);
@@ -42,16 +44,45 @@ public class OrderService
         System.out.println(Date.valueOf(originDate));
 
         if(fc != null){
-            mainPlanes = planesDao.getMainFlights(fc.getId(), Date.valueOf(originDate));
+            for (Plane p: planesDao.getMainFlights(fc.getId())) {
+                System.out.println(p.getDate());
+                System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(p.getDate()));
+                System.out.println(originDate);
+                System.out.println("----------");
+                if(new SimpleDateFormat("yyyy-MM-dd").format(p.getDate()).equals(originDate)){
+                    mainPlanes.add(p);
+                }
+            }
             System.out.println(mainPlanes);
         }
 
-        otherPlanes = planesDao.getFlightsByOriginOrDestiny(origin, destiny);
+        otherPlanes = addOthers(mainPlanes, origin, destiny);
+        System.out.println(otherPlanes);
 
-        ShowPlanes sp = new ShowPlanes();
-        for (Plane p : mainPlanes) sp.addMain(p.getFlightCourse());
-        for (Plane p : otherPlanes) sp.addOther(p.getFlightCourse());
 
-        return Response.status(Response.Status.OK).entity(sp).build();
+        return Response.status(Response.Status.OK).entity(new ShowPlanes(mainPlanes, otherPlanes)).build();
+    }
+    public List<Plane> addOthers(List<Plane> mainPlanes, String origin, String destiny){
+        List<Plane> notFilteredList = planesDao.getFlightsByOriginOrDestiny(origin, destiny);
+
+        boolean check = false;
+        List<Plane> otherPlanes = new ArrayList<>();
+        for (Plane p1: notFilteredList) {
+            check = false;
+            System.out.println(p1.getId());
+            System.out.println("---------");
+            for (Plane p2: mainPlanes) {
+                System.out.println("---------");
+                System.out.println(p2.getId());
+                System.out.println("---------");
+                if(p2.getId() == p1.getId()) {
+                    check = true;
+                    break;
+                }
+            }
+            if(!check) otherPlanes.add(p1);
+        }
+
+        return otherPlanes;
     }
 }

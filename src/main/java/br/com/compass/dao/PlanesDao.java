@@ -8,6 +8,7 @@ import jakarta.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class PlanesDao {
@@ -28,13 +29,12 @@ public class PlanesDao {
         String jpql = "SELECT Distinct(p) FROM Plane as p JOIN FETCH p.seats";
         return em.createQuery(jpql,Plane.class).getResultList();
     }
-    public List<Plane> getMainFlights(int id, Date date) {
+    public List<Plane> getMainFlights(int id) {
 
         try{
-            String jpql = "SELECT p FROM Plane p where p.flightCourse.id=?1 AND p.date=?2";
+            String jpql = "SELECT p FROM Plane p where p.flightCourse.id=?1";
             return em.createQuery(jpql, Plane.class)
                     .setParameter(1, id)
-                    .setParameter(2, date)
                     .getResultList();
         }catch(Exception e){
             return null;
@@ -42,7 +42,6 @@ public class PlanesDao {
     }
 
     public List<Plane> getFlightsByOriginOrDestiny(String origin, String destiny) {
-
         try{
             String jpql = "SELECT p FROM Plane p where p.flightCourse.origin=?1 or p.flightCourse.destiny=?2";
             return em.createQuery(jpql, Plane.class)
