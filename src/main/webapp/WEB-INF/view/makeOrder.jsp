@@ -14,7 +14,7 @@
     <div class = "container" style="text-align-all: center">
         <div class="row">
             <div >
-                <form action="<%=request.getContextPath()%>/api/order/makeOrder" method="POST" accept-charset="ISO-8859-1">
+                <form action="<%=request.getContextPath()%>/api/order/searchFlights" method="POST" accept-charset="ISO-8859-1">
                     <div class="form-group">
                         <hr color="silver">
                         <h2>Buy your ticket</h2>

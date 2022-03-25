@@ -2,6 +2,8 @@ package br.com.compass.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,8 +22,11 @@ public class Plane {
     @CollectionTable(name = "planes_seats_mapping",
             joinColumns = {@JoinColumn(name = "plane_id", referencedColumnName = "id")})
     @MapKeyColumn(name = "seat_number")
-    @Column(name = "avilable")
+    @Column(name = "available")
     private Map<Integer, Boolean> seats;
+
+    private BigDecimal value;
+    private Date date;
 
     boolean editable;
 
@@ -44,29 +49,24 @@ public class Plane {
         }
     }
 
-    public int getId() {
-        return id;
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
+    public FlightCourse getFlightCourse() { return flightCourse; }
+    public void setFlightCourse(FlightCourse flightCourse) { this.flightCourse = flightCourse; }
+
+    public Map<Integer, Boolean> getSeats() { return seats; }
+    public void setSeats(Map<Integer, Boolean> seats) { this.seats = seats; }
+
+    public Date getDate() { return this.date; }
+    public void setDate(Date date){ this.date = date; }
+
+    public BigDecimal getValue() {
+        return value;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public FlightCourse getFlightCourse() {
-        return flightCourse;
-    }
-
-    public void setFlightCourse(FlightCourse flightCourse) {
-        this.flightCourse = flightCourse;
-    }
-
-    public Map<Integer, Boolean> getSeats() {
-        return seats;
-    }
-
-    public void setSeats(Map<Integer, Boolean> seats) {
-        this.seats = seats;
-
+    public void setValue(BigDecimal value) {
+        this.value = value;
     }
 
     @Override
@@ -77,5 +77,4 @@ public class Plane {
                 ", seats=" + seats +
                 '}';
     }
-
 }

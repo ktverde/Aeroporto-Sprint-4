@@ -2,7 +2,7 @@ package br.com.compass.beans;
 
 
 import br.com.compass.dao.FlightCourseDao;
-import br.com.compass.dao.FlightsDao;
+import br.com.compass.dao.PlanesDao;
 import br.com.compass.models.FlightCourse;
 import br.com.compass.models.Plane;
 import jakarta.enterprise.inject.Model;
@@ -17,12 +17,11 @@ public class FlightFormBean {
     private Plane plane = new Plane();
 
     @Inject
-    private FlightsDao flightsDao;
+    private PlanesDao planesDao;
     @Inject
     private FlightCourseDao flightCourseDao;
 
     public void save(){
-        plane.setFlightCourse(flightCourse);
 
         FlightCourse fc = flightCourseDao.verify(flightCourse);
         if(fc==null) {
@@ -31,7 +30,8 @@ public class FlightFormBean {
         }else{
             plane.setFlightCourse(fc);
         }
-        flightsDao.save(plane);
+
+        planesDao.save(plane);
     }
 
     public FlightCourse getFlightCourse() {

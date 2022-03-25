@@ -13,11 +13,16 @@ public class FlightCourse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotBlank
-    private String destiny;
-    @NotBlank
     private String origin;
+    @NotBlank
+    private String destiny;
 
     public FlightCourse() {
+    }
+
+    public FlightCourse(String origin, String destiny) {
+        this.destiny = destiny;
+        this.origin = origin;
     }
 
     public int getId() {

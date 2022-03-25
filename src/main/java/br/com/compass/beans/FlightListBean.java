@@ -1,7 +1,7 @@
 package br.com.compass.beans;
 
 import br.com.compass.dao.FlightCourseDao;
-import br.com.compass.dao.FlightsDao;
+import br.com.compass.dao.PlanesDao;
 import br.com.compass.models.FlightCourse;
 import br.com.compass.models.Plane;
 import jakarta.enterprise.inject.Model;
@@ -21,7 +21,7 @@ public class FlightListBean {
     private List<Plane> planes = new ArrayList<>();
 
     @Inject
-    FlightsDao flightsDao;
+    PlanesDao planesDao;
     @Inject
     FlightCourseDao flightCourseDao;
 
@@ -39,7 +39,7 @@ public class FlightListBean {
             else {
                 plane.setFlightCourse(fc);
             }
-            flightsDao.update(plane);
+            planesDao.update(plane);
         }
         //return to current page
         return null;
@@ -63,12 +63,12 @@ public class FlightListBean {
     }
 
     public List<Plane> getPlanes() {
-        planes=flightsDao.getAllFlights();
+        planes= planesDao.getAllFlights();
         return planes;
     }
 
     public void deletePlane(Plane plane){
-        flightsDao.delete(plane);
+        planesDao.delete(plane);
     }
 
     public List<Map.Entry<Integer,Boolean>> getMapInList(Plane plane){

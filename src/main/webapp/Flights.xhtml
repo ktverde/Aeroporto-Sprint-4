@@ -29,6 +29,18 @@
             <h:inputText value="#{flightFormBean.flightCourse.destiny}" required="true" id="destiny"/>
             <h:message for="destiny"/>
         </div>
+        <div>
+            <h:outputLabel value="Flight value"/>
+            <h:inputText value="#{flightFormBean.plane.value}" required="true" id="value"/>
+            <h:message for="value"/>
+        </div>
+        <div>
+            <h:outputLabel value="Flight Date"/>
+            <h:inputText value="#{flightFormBean.plane.date}" id="date">
+                <f:convertDateTime pattern="yyyy-MM-dd"/>
+            </h:inputText>
+            <h:message for="date"/>
+        </div>
         <h:commandButton value="Cadastrar" action="#{flightFormBean.save()}"/>
     </h:form>
 
