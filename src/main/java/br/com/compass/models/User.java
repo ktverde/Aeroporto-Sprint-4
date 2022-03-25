@@ -10,7 +10,7 @@ public class User
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
     private String name, username, password;
-
+    private String email;
     @OneToOne
     private Address address;
 
@@ -36,6 +36,14 @@ public class User
 
     public Address getAddress() { return address; }
     public void setAddress(Address address) { this.address = address; }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     @Override
     public String toString() {
