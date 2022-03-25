@@ -36,7 +36,7 @@
         </div>
         <div>
             <h:outputLabel value="Flight Date"/>
-            <h:inputText value="#{flightFormBean.plane.date}" id="date">
+            <h:inputText type="date" value="#{flightFormBean.plane.date}" id="date">
                 <f:convertDateTime pattern="yyyy-MM-dd"/>
             </h:inputText>
             <h:message for="date"/>

@@ -24,11 +24,18 @@ public class PlanesDao {
         em.persist(plane);
         em.getTransaction().commit();
     }
+    public Plane getFlightById(int id){
+        String jpql = "SELECT p FROM Plane p WHERE p.id = ?1";
+        return em.createQuery(jpql,Plane.class)
+                .setParameter(1,id)
+                .getSingleResult();
+    }
 
     public List<Plane> getAllFlights() {
         String jpql = "SELECT Distinct(p) FROM Plane as p JOIN FETCH p.seats";
         return em.createQuery(jpql,Plane.class).getResultList();
     }
+
     public List<Plane> getMainFlights(int id) {
 
         try{

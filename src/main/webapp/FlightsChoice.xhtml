@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<f:metadata>
+    <f:viewParam value="#{ticketBean.mainPlanesId}" name="mpi"/>
+    <f:viewParam value="#{ticketBean.otherPlanesId}" name="opi"/>
+    <f:viewAction action="#{ticketBean.loadPlanes()}"/>
+</f:metadata>
+
+<h:head>
+    <title>Flights List</title>
+</h:head>
+
+<h:body>
+    <c:choose>
+        <c:when test="#{ticketBean.test()}">
+            <p>some.test is true</p>
+        </c:when>
+        <c:otherwise>
+            <h:form>
+                <div>
+                    <h1>Encontramos esses voos</h1>
+                </div>
+                <h:dataTable var="plane" value="#{ticketBean.mainPlanes}">
+                    <h:column>
+                        <f:facet name="header">Origin</f:facet>
+                        <h:outputText value=" #{plane.flightCourse.origin}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Destiny</f:facet>
+                        <h:outputText value="#{plane.flightCourse.destiny}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Date</f:facet>
+                        <h:outputText value="#{plane.date}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Value</f:facet>
+                        <h:outputText value="#{plane.value}"/>
+                    </h:column>
+                    <h:column>
+                        <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/makeTicket/#{plane.id}">Buy this</a>
+                    </h:column>
+
+                </h:dataTable>
+                <div>
+                    <h1>Voos relacionados</h1>
+                </div>
+                <h:dataTable var="plane" value="#{ticketBean.otherPlanes}">
+                    <h:column>
+                        <f:facet name="header">Origin</f:facet>
+                        <h:outputText value=" #{plane.flightCourse.origin}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Destiny</f:facet>
+                        <h:outputText value="#{plane.flightCourse.destiny}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Date</f:facet>
+                        <h:outputText value="#{plane.date}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Value</f:facet>
+                        <h:outputText value="#{plane.value}"/>
+                    </h:column>
+                    <h:column>
+                        <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/makeTicket/#{plane.id}">Buy this</a>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </c:otherwise>
+    </c:choose>
+
+</h:body>
+
+</html>
