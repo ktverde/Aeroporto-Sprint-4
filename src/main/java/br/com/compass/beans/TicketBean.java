@@ -4,8 +4,13 @@ import br.com.compass.dao.PlanesDao;
 import br.com.compass.models.Plane;
 import jakarta.enterprise.inject.Model;
 import jakarta.faces.annotation.FacesConfig;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.ws.rs.core.*;
+import org.jboss.weld.context.activator.ActivateRequestContext;
 
 import java.lang.annotation.Annotation;
 import java.net.URI;
@@ -15,11 +20,15 @@ import java.util.*;
 @Model
 public class TicketBean
 {
+
     @Inject
     private PlanesDao planesDao;
 
     private List<Plane> mainPlanes = new ArrayList<>();
     private List<Plane> otherPlanes = new ArrayList<>();
+
+    private int planeId;
+    private int selectedValue;
 
     private String mainPlanesId;
     private String otherPlanesId;
@@ -47,6 +56,17 @@ public class TicketBean
         return "";
     }
 
+    public Plane getPlaneForIndex(int index){
+        return mainPlanes.get(index);
+    }
+
+    public List<Map.Entry<Integer,Boolean>> getSeatsList(Plane plane){
+        if(plane!=null)
+            return new ArrayList<>(plane.getSeats().entrySet());
+        else
+            return new ArrayList<>();
+    }
+
     public List<Plane> getMainPlanes() { return mainPlanes; }
     public void setMainPlanes(List<Plane> mainPlanes) { this.mainPlanes = mainPlanes; }
 
@@ -58,4 +78,11 @@ public class TicketBean
 
     public String getOtherPlanesId() { return otherPlanesId; }
     public void setOtherPlanesId(String otherPlanesId) { this.otherPlanesId = otherPlanesId; }
+
+    public int getSelectedValue() { return selectedValue; }
+    public void setSelectedValue(int selectedValue) { this.selectedValue = selectedValue; }
+
+    public int getPlaneId() { return planeId; }
+    public void setPlaneId(int planeId) { this.planeId = planeId; }
+
 }

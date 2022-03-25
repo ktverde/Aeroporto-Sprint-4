@@ -35,11 +35,13 @@ public class OrderResource {
     }
 
     @Auth
-    @Path("/makeTicket/{planeId}")
+    @Path("/makeTicket/{planeId}/{selectedValue}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response makeTicket(@PathParam("planeId") String planeId) throws Exception {
-        System.out.println("Printando " + planeId);
-        return orderService.makeTicket(planeId);
+    public Response makeTicket(@PathParam("planeId") String planeId,
+                               @PathParam("selectedValue") String selectedValue,
+                               @CookieParam("user") String userId) throws Exception {
+
+        return orderService.makeTicket(planeId, selectedValue, userId);
     }
 }

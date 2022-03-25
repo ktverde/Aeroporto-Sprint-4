@@ -2,8 +2,12 @@ package br.com.compass.services;
 
 import br.com.compass.dao.FlightCourseDao;
 import br.com.compass.dao.PlanesDao;
+import br.com.compass.dao.UserDao;
 import br.com.compass.models.FlightCourse;
 import br.com.compass.models.Plane;
+import br.com.compass.models.Ticket;
+import br.com.compass.models.User;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,8 +22,12 @@ import java.util.TimeZone;
 
 public class OrderService
 {
+
     PlanesDao planesDao = new PlanesDao();
+
     FlightCourseDao flightCourseDao = new FlightCourseDao();
+
+    UserDao userDao = new UserDao();
 
     public void makeOrderForward(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -27,8 +35,20 @@ public class OrderService
 
     }
 
-    public Response makeTicket(String planeId) {
-        return Response.status(Response.Status.OK).entity(planeId).build();
+    public Response makeTicket(String planeId,String seatId, String userId) {
+        int planeIntId = Integer.parseInt(planeId);
+        int seatIntId = Integer.parseInt(seatId);
+        System.out.println(planeId);
+
+        Plane chosenPlane = planesDao.getFlightById(planeIntId);
+        chosenPlane.getSeats().put(seatIntId,false);
+        planesDao.update(chosenPlane);
+        User user = userDao.readId(Long.parseLong(userId));
+
+        Ticket ticket = new Ticket(user,chosenPlane.getFlightCourse(),chosenPlane.getDate(),planeIntId,seatIntId);
+        System.out.println(ticket);
+
+        return Response.status(Response.Status.OK).entity(ticket).build();
     }
 
     public Response searchFlights(String origin,String destiny, String originDate, String returnDate) {

@@ -1,6 +1,7 @@
 package br.com.compass.models;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.time.Instant;
 import java.util.Calendar;
 
@@ -15,13 +16,22 @@ public class Ticket {
     private User client;
     @OneToOne
     private FlightCourse flightCourse;
-    private Calendar emissionDate;
-    private Calendar flightDate;
+    private Date emissionDate;
+    private Date flightDate;
 
     private int planeId;
     private int seat;
 
     public Ticket() {
+    }
+
+    public Ticket(User client, FlightCourse flightCourse, Date flightDate, int planeId, int seat) {
+        this.client = client;
+        this.flightCourse = flightCourse;
+        this.emissionDate = new Date();
+        this.flightDate = flightDate;
+        this.planeId = planeId;
+        this.seat = seat;
     }
 
     public int getId() {
@@ -56,19 +66,19 @@ public class Ticket {
         this.flightCourse = flightCourse;
     }
 
-    public Calendar getEmissionDate() {
+    public Date getEmissionDate() {
         return emissionDate;
     }
 
-    public void setEmissionDate(Calendar emissionDate) {
+    public void setEmissionDate(Date emissionDate) {
         this.emissionDate = emissionDate;
     }
 
-    public Calendar getFlightDate() {
+    public Date getFlightDate() {
         return flightDate;
     }
 
-    public void setFlightDate(Calendar flightDate) {
+    public void setFlightDate(Date flightDate) {
         this.flightDate = flightDate;
     }
 
