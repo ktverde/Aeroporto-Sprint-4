@@ -54,9 +54,9 @@
             </div>
 
             <form name= "formGoogle" id="formGoogle" action="<%=request.getContextPath()%>/api/user/register" method="POST" accept-charset="ISO-8859-1">
-                <input id="Gusername" type="text" class="form-control" name="username" placeholder="Username" required>
-                <input id="Gpassword" type="password" class="form-control" name="password" placeholder="Password" required>
-                <input id="Gname" class="form-control" name="name">
+                <input id="Gusername" type="hidden" class="form-control" name="username" placeholder="Username" required>
+                <input id="Gpassword" type="hidden" class="form-control" name="password" placeholder="Password" required>
+                <input id="Gname" type="hidden" class="form-control" name="name">
             </form>
 
             <script type="text/javascript">
