@@ -40,16 +40,25 @@
             <form id="formregister"action="<%=request.getContextPath()%>/register.jsp" method="POST" accept-charset="ISO-8859-1">
                 <button type="submit" class="btn btn-light">Register</button>
             </form>
+            <hr color="silver">
+            Or
+            <hr color="silver">
+            <div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
+
+            <img id="myImg"><br>
+            <p id="showName"></p>
+            <div id="status"></div>
+            <div>
+                <button class="btn btn-light" id="signOutBtn" onclick="myFunction()" style="visibility: hidden">Sign Out</button>
+                <button class="btn btn-success" id ="continueBtn" type="submit" style="visibility: hidden" onclick="submitGoogle()">Continue with Google</button>
+            </div>
+
             <form name= "formGoogle" id="formGoogle" action="<%=request.getContextPath()%>/api/user/register" method="POST" accept-charset="ISO-8859-1">
-                    <input id="Gusername" type="text" class="form-control" name="username" placeholder="Username" required>
-                    <input id="Gpassword" type="password" class="form-control" name="password" placeholder="Password" required>
-                    <input id="Gname" class="form-control" name="name">
+                <input id="Gusername" type="text" class="form-control" name="username" placeholder="Username" required>
+                <input id="Gpassword" type="password" class="form-control" name="password" placeholder="Password" required>
+                <input id="Gname" class="form-control" name="name">
             </form>
 
-            <div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
-                <img id="myImg"><br>
-                <p id="showName"></p>
-                <div id="status"></div>
             <script type="text/javascript">
                 function onSignIn(googleUser) {
                     var profile = googleUser.getBasicProfile();
@@ -61,21 +70,19 @@
                     document.getElementById("myP").style.visibility = "hidden";
                     document.getElementById("continueBtn").style.visibility = "visible";
                     document.getElementById("status").innerHTML = 'Welcome '+ name;
-                    //document.getElementById("formlogin").style.visibility = "hidden";
-                    //document.getElementById("formregister").style.visibility = "hidden";
+                    document.getElementById("signOutBtn").style.visibility = "visible"
                     document.getElementById("Gusername").value = email;
                     document.getElementById("Gname").value = name;
                     document.getElementById("Gpassword").value = "12345";
                 }
             </script>
-            <button onclick="myFunction()">Sign Out</button>
             <script>
                 function myFunction() {
                     gapi.auth2.getAuthInstance().disconnect();
                     location.reload();
                 }
             </script>
-            <button id ="continueBtn" type="submit" style="visibility: hidden" onclick="submitGoogle()">Continue with Google</button>
+
             <script>
                 function submitGoogle() {
                     document.getElementById("formGoogle").submit();

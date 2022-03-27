@@ -1,6 +1,7 @@
 package br.com.compass.resources;
 
 
+import br.com.compass.auth.Auth;
 import br.com.compass.exception.MailSendException;
 import br.com.compass.models.User;
 import br.com.compass.services.MailService;
@@ -17,16 +18,18 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.Response;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URI;
 import java.util.Properties;
 
 @Path("/mail")
 public class MailResource {
 
     private MailService mailService= new MailService();
+    @Auth
     @GET
     @Path("/send/{idTicket}")
-    public Response sendMail(@PathParam("idTicket") int idTicket){
+    public Response sendMail(@PathParam("idTicket") String idTicket){
         mailService.sendMail(idTicket);
-        return Response.ok().build();
+        return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded/sucess.jsp")).build();
     }
 }

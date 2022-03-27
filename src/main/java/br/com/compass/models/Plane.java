@@ -3,11 +3,9 @@ package br.com.compass.models;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.logging.SimpleFormatter;
 
 @Entity
 @Table(name="planes")
@@ -58,7 +56,13 @@ public class Plane {
     public Map<Integer, Boolean> getSeats() { return seats; }
     public void setSeats(Map<Integer, Boolean> seats) { this.seats = seats; }
 
-    public Date getDate() { return this.date; }
+    public String getDateFormated() {
+
+        SimpleDateFormat sp = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+        sp.setTimeZone(TimeZone.getTimeZone("UTC"));
+        return sp.format(date);
+    }
+    public Date getDate() { return date; }
     public void setDate(Date date){ this.date = date; }
 
     public BigDecimal getValue() {

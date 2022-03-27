@@ -27,33 +27,35 @@ public class TicketBean
     private List<Plane> mainPlanes = new ArrayList<>();
     private List<Plane> otherPlanes = new ArrayList<>();
 
-    private int planeId;
-    private int selectedValue;
+    private String planeId;
+    private String selectedValue;
 
     private String mainPlanesId;
     private String otherPlanesId;
 
     public void loadPlanes(){
+        String[] aux1, aux2;
         System.out.println("alou");
         System.out.println(mainPlanesId + " | " + otherPlanesId);
-        String[] aux1 = mainPlanesId.split("-");
-        String[] aux2 = otherPlanesId.split("-");
-
-        for (String s: aux1) {
-            mainPlanes.add(planesDao.getFlightById(Integer.parseInt(s)));
+        if(mainPlanesId != null) {
+            aux1 = mainPlanesId.split("-");
+            for (String s: aux1) {
+                mainPlanes.add(planesDao.getFlightById(Integer.parseInt(s)));
+            }
         }
-        for (String s: aux2) {
-            otherPlanes.add(planesDao.getFlightById(Integer.parseInt(s)));
+        if(otherPlanesId != null) {
+            aux2 = otherPlanesId.split("-");
+            for (String s : aux2) {
+                otherPlanes.add(planesDao.getFlightById(Integer.parseInt(s)));
+            }
         }
     }
 
-    public boolean test(){
-        return mainPlanes.isEmpty();
+    public boolean test1(){
+        return mainPlanes.isEmpty() && otherPlanes.isEmpty();
     }
-
-    public String redirect(int id){
-        Response.seeOther(URI.create("http://localhost:8080/api/order/makeTicket/"+id)).build();
-        return "";
+    public boolean test2(){
+        return mainPlanes.isEmpty() && !otherPlanes.isEmpty();
     }
 
     public Plane getPlaneForIndex(int index){
@@ -79,10 +81,10 @@ public class TicketBean
     public String getOtherPlanesId() { return otherPlanesId; }
     public void setOtherPlanesId(String otherPlanesId) { this.otherPlanesId = otherPlanesId; }
 
-    public int getSelectedValue() { return selectedValue; }
-    public void setSelectedValue(int selectedValue) { this.selectedValue = selectedValue; }
+    public String getSelectedValue() { return selectedValue; }
+    public void setSelectedValue(String selectedValue) { this.selectedValue = selectedValue; }
 
-    public int getPlaneId() { return planeId; }
-    public void setPlaneId(int planeId) { this.planeId = planeId; }
+    public String getPlaneId() { return planeId; }
+    public void setPlaneId(String planeId) { this.planeId = planeId; }
 
 }

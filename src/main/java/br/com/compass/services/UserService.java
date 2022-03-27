@@ -57,7 +57,7 @@ public class UserService {
         }
 
         dao.save(user);
-        return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded/sucess.jsp")).entity("Usuario cadastrado com sucesso!").build();
+        return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded")).build();
     }
 
     public Response listAllUsers() {

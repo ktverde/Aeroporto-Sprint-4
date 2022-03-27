@@ -27,9 +27,10 @@ public class UserResource {
     @Path("/register")
     @Produces(MediaType.APPLICATION_JSON)
     public Response register(@FormParam("username") String username,
+                             @FormParam("email") String email,
                              @FormParam("password") String password,
                              @FormParam("name") String name){
-        return userService.register(new User(username, password, name));
+        return userService.register(new User(username, password, name, email));
     }
 
     @Auth

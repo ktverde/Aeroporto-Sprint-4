@@ -33,6 +33,18 @@ public class TicketDao
                 .setParameter("id", id)
                 .getSingleResult();
     }
+    public Ticket readUser(int id){
+        String jpql = "SELECT t FROM Ticket t WHERE t.client.userId = :id";
+        return em.createQuery(jpql, Ticket.class)
+                .setParameter("id", id)
+                .getSingleResult();
+    }
+    public Ticket readTicket(Ticket ticket){
+        String jpql = "SELECT t FROM Ticket t WHERE t = :ticket";
+        return em.createQuery(jpql, Ticket.class)
+                .setParameter("ticket", ticket)
+                .getSingleResult();
+    }
 
     public void update(Ticket ticket) {
         em.getTransaction().begin();

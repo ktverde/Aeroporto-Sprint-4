@@ -35,10 +35,11 @@ public class UserDao
     }
     public User readName(String username){
         try{
-            String jpql = "SELECT u FROM User u WHERE u.username = :username";
+            String jpql = "SELECT u FROM User u WHERE u.username = ?1 or u.email = ?2";
             System.out.println(username);
             return em.createQuery(jpql, User.class)
-                    .setParameter("username", username)
+                    .setParameter(1, username)
+                    .setParameter(2, username)
                     .getSingleResult();
         }catch(Exception e){
             System.out.println(Arrays.toString(e.getStackTrace()));

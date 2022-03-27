@@ -22,15 +22,22 @@
 
 <h:body>
     <c:choose>
-        <c:when test="#{ticketBean.test()}">
-            <p>some.test is true</p>
+        <c:when test="#{ticketBean.test1()}">
+            <div>
+                Perdão, não encontramos nenhum voo
+                <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/makeOrder"> Encontrre outros</a>
+            </div>
         </c:when>
-        <c:otherwise>
-            <h:form>
+        <c:when test="#{ticketBean.test2()}">
                 <div>
-                    <h1>Encontramos esses voos</h1>
+                    Perdão, não encontramos nenhum voo com essa data
+                    <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/makeOrder"> Encontrre outros</a>
                 </div>
-                <h:dataTable var="plane" value="#{ticketBean.mainPlanes}" varStatus="index1">
+                <div>
+                    <h1>Voos com mesmo destino/origem</h1>
+                </div>
+            <h:form>
+                <h:dataTable var="plane" value="#{ticketBean.otherPlanes}" varStatus="index2">
                     <h:column>
                         <f:facet name="header">Origin</f:facet>
                         <h:outputText value=" #{plane.flightCourse.origin}"/>
@@ -41,32 +48,44 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">Date</f:facet>
-                        <h:outputText value="#{plane.date}"/>
+                        <h:outputText value="#{plane.dateFormated}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">Value</f:facet>
                         <h:outputText value="#{plane.value}"/>
                     </h:column>
                     <h:column>
-                        <div class="container">
-                            <h:selectOneMenu value="#{ticketBean.selectedValue}" layout="pageDirection" required="true" id="SeatSelectionMain" styleClass="form-select">
-                                <f:selectItem itemLabel="Seats" noSelectionOption="true"/>
-                                <c:forEach items="#{ticketBean.getSeatsList(ticketBean.getPlaneForIndex(index1))}" var="seat">
-                                    <f:selectItem itemValue="#{seat.key}" itemLabel="#{seat.key}" itemDisabled="#{seat.value eq false}"/>
-                                </c:forEach>
-                            </h:selectOneMenu>
-                            <h:message for="SeatSelectionMain"/>
-                        </div>
+                        <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/chooseSeat/#{plane.id}">Buy this</a>
                     </h:column>
-                    <h:column>
-                        <a  href="http://localhost:8080/Aeroporto_war_exploded/api/order/makeTicket/#{ticketBean.getPlaneForIndex(index1)}/#{ticketBean.selectedValue}">Buy this</a>
-                    </h:column>
-                    <h:column>
-
-                    </h:column>
-
-
                 </h:dataTable>
+            </h:form>
+        </c:when>
+        <c:otherwise>
+            <h:form>
+            <div>
+                <h1>Encontramos esses voos</h1>
+            </div>
+            <h:dataTable var="plane" value="#{ticketBean.mainPlanes}" varStatus="index1">
+                <h:column>
+                    <f:facet name="header">Origin</f:facet>
+                    <h:outputText value=" #{plane.flightCourse.origin}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Destiny</f:facet>
+                    <h:outputText value="#{plane.flightCourse.destiny}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Date</f:facet>
+                    <h:outputText value="#{plane.dateFormated}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Value</f:facet>
+                    <h:outputText value="#{plane.value}"/>
+                </h:column>
+                <h:column>
+                    <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/chooseSeat/#{plane.id}">Buy this</a>
+                </h:column>
+            </h:dataTable>
                 <div>
                     <h1>Voos relacionados</h1>
                 </div>
@@ -81,28 +100,18 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">Date</f:facet>
-                        <h:outputText value="#{plane.date}"/>
+                        <h:outputText value="#{plane.dateFormated}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">Value</f:facet>
                         <h:outputText value="#{plane.value}"/>
                     </h:column>
                     <h:column>
-                        <div class="container">
-                            <h:selectOneMenu value="#{ticketBean.selectedValue}" layout="pageDirection" required="true" id="SeatSelectionOther" styleClass="form-select">
-                                <f:selectItem itemLabel="Seats" noSelectionOption="true"/>
-                                <c:forEach items="#{ticketBean.getSeatsList(ticketBean.getPlaneForIndex(index2))}" var="seat" varStatus="idx">
-                                    <f:selectItem itemValue="#{seat.key}" itemLabel="#{seat.key}" itemDisabled="#{seat.value eq false}"/>
-                                </c:forEach>
-                            </h:selectOneMenu>
-                            <h:message for="SeatSelectionOther"/>
-                        </div>
-                    </h:column>
-                    <h:column>
-<!--                        <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/makeTicket/#{plane.id}/#{ticketBean.selectedValue}">Buy this</a>-->
+                        <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/chooseSeat/#{plane.id}">Buy this</a>
                     </h:column>
                 </h:dataTable>
             </h:form>
+
         </c:otherwise>
     </c:choose>
 

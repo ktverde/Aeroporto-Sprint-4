@@ -17,7 +17,7 @@ public class Ticket {
     @OneToOne
     private FlightCourse flightCourse;
     private Date emissionDate;
-    private Date flightDate;
+    private String flightDate;
 
     private int planeId;
     private int seat;
@@ -25,7 +25,7 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(User client, FlightCourse flightCourse, Date flightDate, int planeId, int seat) {
+    public Ticket(User client, FlightCourse flightCourse, String flightDate, int planeId, int seat) {
         this.client = client;
         this.flightCourse = flightCourse;
         this.emissionDate = new Date();
@@ -74,11 +74,11 @@ public class Ticket {
         this.emissionDate = emissionDate;
     }
 
-    public Date getFlightDate() {
+    public String getFlightDate() {
         return flightDate;
     }
 
-    public void setFlightDate(Date flightDate) {
+    public void setFlightDate(String flightDate) {
         this.flightDate = flightDate;
     }
 
@@ -92,8 +92,8 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return String.format("Your Ticket:\n\t%s, %s\nid:%d\nFlight Information:\n\t\tPlane Id:%d\n\t\tOrigin:%s to Destiny:%s\n\t\tFlight date:%s, Seat:%d\nTicket Emission Date:%s"
-                , client.getName(), client.getUsername(), planeId, flightCourse.getOrigin(), flightCourse.getDestiny(), flightDate, seat, emissionDate);
+        return String.format("Your Ticket:\n\t%s, %s\nid:%d\nFlight Information: %s to %s\n\t\tPlane Id:%d\n\tFlight date:%s, Seat:%d\nTicket Emission Date:%s"
+                , client.getName(), client.getUsername(), client.getUserId(), flightCourse.getOrigin(), flightCourse.getDestiny(), planeId, flightDate.toString(), seat, emissionDate);
     }
 
 }

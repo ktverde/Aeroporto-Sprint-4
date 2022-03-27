@@ -10,8 +10,8 @@ public class MailService {
 
     TicketDao ticketDao = new TicketDao();
 
-    public void sendMail(int idTicket){
-        Ticket ticket = ticketDao.readId(idTicket);
+    public void sendMail(String idTicket){
+        Ticket ticket = ticketDao.readId(Integer.parseInt(idTicket));
         try {
             MailSendUtils.sendEmail(ticket);
         } catch (IOException e) {

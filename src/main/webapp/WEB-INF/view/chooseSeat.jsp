@@ -14,30 +14,31 @@
     <div class = "container" style="text-align-all: center">
         <div class="row">
             <div >
-                <form action="<%=request.getContextPath()%>/api/user/register" method="POST" accept-charset="ISO-8859-1">
+                <form action="<%=request.getContextPath()%>/api/order/makeTicket" method="POST" accept-charset="ISO-8859-1">
                     <div class="form-group">
                         <hr color="silver">
-                        <h2>Register</h2>
+                        <h2>Choose your seat</h2>
                     </div>
                     <div class="form-group">
-                        <label>Full name:</label>
-                        <input type="text" class="form-control" name="name" placeholder="Name" required>
+                        <label>${plane.flightCourse.origin} to ${plane.flightCourse.destiny}:</label>
+                        <select class="form-select" name="seat" required>
+                            <option selected>Select</option>
+                            <c:forEach items="${seatList}" var="seat">
+                                <c:choose>
+                                    <c:when test="${seat.value eq true}">
+                                        <option>${seat.key}</option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option disabled>${seat.key}</option>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label>Email:</label>
-                        <input type="text" class="form-control" name="email" placeholder="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Username: </label>
-                        <input type="text" class="form-control" name="username" placeholder="Username" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Password: </label>
-                        <input type="password" class="form-control" name="password" placeholder="Password" required>
-                    </div>
-                    <div class="form-group">
+                        <input type="hidden" value="${plane.id}" name="planeId">
                         <hr color="silver">
-                        <button type="submit" class="btn btn-success">Register</button>
+                        <button type="submit" class="btn btn-success">Buy</button>
                     </div>
                 </form>
             </div>

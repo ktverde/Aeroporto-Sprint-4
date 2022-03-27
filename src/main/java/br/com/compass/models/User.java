@@ -16,10 +16,11 @@ public class User
 
     public User(){}
 
-    public User(String username, String password, String name) {
+    public User(String username, String password, String name, String email) {
         this.username = username;
         this.password = password;
         this.name = name;
+        this.email = email;
     }
 
     public Long getUserId() { return userId; }
