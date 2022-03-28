@@ -55,6 +55,7 @@
 
             <form name= "formGoogle" id="formGoogle" action="<%=request.getContextPath()%>/api/user/register" method="POST" accept-charset="ISO-8859-1">
                 <input id="Gusername" type="hidden" class="form-control" name="username" placeholder="Username" required>
+                <input id="Gemail" type="hidden" class="form-control" name="email" placeholder="email" required>
                 <input id="Gpassword" type="hidden" class="form-control" name="password" placeholder="Password" required>
                 <input id="Gname" type="hidden" class="form-control" name="name">
             </form>
@@ -72,6 +73,7 @@
                     document.getElementById("status").innerHTML = 'Welcome '+ name;
                     document.getElementById("signOutBtn").style.visibility = "visible"
                     document.getElementById("Gusername").value = email;
+                    document.getElementById("Gemail").value = email;
                     document.getElementById("Gname").value = name;
                     document.getElementById("Gpassword").value = "12345";
                 }
