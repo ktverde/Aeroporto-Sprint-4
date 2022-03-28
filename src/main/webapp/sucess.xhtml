@@ -19,47 +19,51 @@
 <div class="container mt-3">
     <h2>Sucesso!</h2>
     Cheque seu email para ver os detalhes da sua compra.
-    <div class="container mt-3">
-        <h:form>
-            <div class="input-group mb-3">
-                <span class="input-group-text"><h:outputLabel value="Your Ticket"/></span>
+    <div class="container m-5"  style="size: portrait">
+        <div class="card" style="width: 50rem;">
+            <div class="card-body" >
+                <h:form>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><h:outputLabel value="Your Ticket"/></span>
+                    </div>
+                    <hr color="silver"/>
+                    <h:outputLabel value="Client Information"/>
+                    <div class="input-group mb-3">
+                        <br/>
+                        <h:outputText value="#{ticketBean.ticket.client.name}" styleClass="form-control"/>
+                        <h:outputText value="#{ticketBean.ticket.client.username}" styleClass="form-control"/>
+                    </div>
+                    <hr color="silver"/>
+                    <h:outputLabel value="Ticket Id"/>
+                    <div class="input-group mb-3">
+                        <br/>
+                        <h:outputText value="#{ticketBean.ticketId}" styleClass="form-control"/>
+                    </div>
+                    <hr color="silver"/>
+                    <h:outputLabel value="Flight Information"/>
+                    <div class="input-group mb-3">
+                        <br/>
+                        <h:outputText value="#{ticketBean.ticket.flightCourse.origin}" styleClass="form-control"/>
+                        <span class="input-group-text"><h:outputLabel value="to"/></span>
+                        <h:outputText value="#{ticketBean.ticket.flightCourse.destiny}" styleClass="form-control"/>
+                    </div>
+                    <hr color="silver"/>
+                    <h:outputLabel value="Flight Date"/>
+                    <div class="input-group mb-3">
+                        <br/>
+                        <h:outputText value="#{ticketBean.ticket.flightDate.toString()}" styleClass="form-control"/>
+                        <span class="input-group-text"><h:outputLabel value="Seat:"/></span>
+                        <h:outputText value="#{ticketBean.ticket.seat}" styleClass="form-control"/>
+                    </div>
+                    <hr color="silver"/>
+                    <h:outputLabel value="Emission Date"/>
+                    <div class="input-group mb-3">
+                        <br/>
+                        <h:outputText value="#{ticketBean.ticket.emissionDate}" styleClass="form-control"/>
+                    </div>
+                </h:form>
             </div>
-            <hr color="silver"/>
-            <h:outputLabel value="Client Information"/>
-            <div class="input-group mb-3">
-                <br/>
-                <h:outputText value="#{ticketBean.ticket.client.name}" styleClass="form-control"/>
-                <h:outputText value="#{ticketBean.ticket.client.username}" styleClass="form-control"/>
-            </div>
-            <hr color="silver"/>
-            <h:outputLabel value="Ticket Id"/>
-            <div class="input-group mb-3">
-                <br/>
-                <h:outputText value="#{ticketBean.ticketId}" styleClass="form-control"/>
-            </div>
-            <hr color="silver"/>
-            <h:outputLabel value="Flight Information"/>
-            <div class="input-group mb-3">
-                <br/>
-                <h:outputText value="#{ticketBean.ticket.flightCourse.origin}" styleClass="form-control"/>
-                <span class="input-group-text"><h:outputLabel value="to"/></span>
-                <h:outputText value="#{ticketBean.ticket.flightCourse.destiny}" styleClass="form-control"/>
-            </div>
-            <hr color="silver"/>
-            <h:outputLabel value="Flight Date"/>
-            <div class="input-group mb-3">
-                <br/>
-                <h:outputText value="#{ticketBean.ticket.flightDate.toString()}" styleClass="form-control"/>
-                <span class="input-group-text"><h:outputLabel value="Seat:"/></span>
-                <h:outputText value="#{ticketBean.ticket.seat}" styleClass="form-control"/>
-            </div>
-            <hr color="silver"/>
-            <h:outputLabel value="Emission Date"/>
-            <div class="input-group mb-3">
-                <br/>
-                <h:outputText value="#{ticketBean.ticket.emissionDate}" styleClass="form-control"/>
-            </div>
-        </h:form>
+        </div>
         <hr color="silver"/>
     </div>
     <div class="container mt-3">
