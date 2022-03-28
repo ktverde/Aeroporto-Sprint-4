@@ -20,6 +20,6 @@ public class MailResource {
     @Path("/send/{idTicket}")
     public Response sendMail(@PathParam("idTicket") String idTicket){
         mailService.sendMail(idTicket);
-        return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded/sucess.jsp")).build();
+        return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded/sucess.xhtml?iT="+idTicket)).build();
     }
 }

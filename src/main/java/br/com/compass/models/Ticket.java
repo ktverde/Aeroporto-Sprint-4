@@ -96,7 +96,8 @@ public class Ticket {
     @Override
     public String toString() {
         return String.format("Your Ticket:\n\t%s, %s\n\tTicket id:%d\nFlight Information: %s to %s\n\tPlane Id:%d\n\tFlight date:%s, Seat:%d\nTicket Emission Date:%s"
-                , client.getName(), client.getUsername(), client.getUserId(), flightCourse.getOrigin(), flightCourse.getDestiny(), planeId, flightDate.toString(), seat, emissionDate);
+                , client.getName(), client.getUsername(), id, flightCourse.getOrigin(), flightCourse.getDestiny(), planeId, flightDate.toString(), seat, emissionDate);
     }
+
 
 }

@@ -1,7 +1,9 @@
 package br.com.compass.beans;
 
 import br.com.compass.dao.PlanesDao;
+import br.com.compass.dao.TicketDao;
 import br.com.compass.models.Plane;
+import br.com.compass.models.Ticket;
 import jakarta.enterprise.inject.Model;
 import jakarta.faces.annotation.FacesConfig;
 import jakarta.inject.Inject;
@@ -17,6 +19,8 @@ public class TicketBean
 
     @Inject
     private PlanesDao planesDao;
+    @Inject
+    private TicketDao ticketDao;
 
     private List<Plane> mainPlanes = new ArrayList<>();
     private List<Plane> otherPlanes = new ArrayList<>();
@@ -26,6 +30,9 @@ public class TicketBean
 
     private String mainPlanesId;
     private String otherPlanesId;
+
+    private String ticketId;
+    private Ticket ticket;
 
     public void loadPlanes(){
         String[] aux1, aux2;
@@ -45,22 +52,15 @@ public class TicketBean
         }
     }
 
+    public void loadTicket(){
+        if(ticketId != null) this.ticket = ticketDao.readId(Integer.parseInt(ticketId));
+    }
+
     public boolean test1(){
         return mainPlanes.isEmpty() && otherPlanes.isEmpty();
     }
     public boolean test2(){
         return mainPlanes.isEmpty() && !otherPlanes.isEmpty();
-    }
-
-    public Plane getPlaneForIndex(int index){
-        return mainPlanes.get(index);
-    }
-
-    public List<Map.Entry<Integer,Boolean>> getSeatsList(Plane plane){
-        if(plane!=null)
-            return new ArrayList<>(plane.getSeats().entrySet());
-        else
-            return new ArrayList<>();
     }
 
     public List<Plane> getMainPlanes() { return mainPlanes; }
@@ -81,4 +81,9 @@ public class TicketBean
     public String getPlaneId() { return planeId; }
     public void setPlaneId(String planeId) { this.planeId = planeId; }
 
+    public Ticket getTicket() { return ticket; }
+    public void setTicket(Ticket ticket) { this.ticket = ticket; }
+
+    public String getTicketId() { return ticketId; }
+    public void setTicketId(String ticketId) { this.ticketId = ticketId; }
 }
