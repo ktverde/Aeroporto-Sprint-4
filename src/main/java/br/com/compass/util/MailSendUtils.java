@@ -17,7 +17,7 @@ public class MailSendUtils {
     public static void sendEmail(Ticket ticket) throws IOException {
 
         Email from = new Email("sup.apairlines@gmail.com");
-        String subject = "Sending with SendGrid is Fun";
+        String subject = "Your ticket is here!";
         Email to = new Email(ticket.getClient().getEmail());
         Content content = new Content("text/plain", ticket.toString());
         Mail mail = new Mail(from, subject, to, content);

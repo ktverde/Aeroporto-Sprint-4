@@ -25,6 +25,7 @@ import java.util.Properties;
 public class MailResource {
 
     private MailService mailService= new MailService();
+
     @Auth
     @GET
     @Path("/send/{idTicket}")

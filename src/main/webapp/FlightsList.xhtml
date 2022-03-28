@@ -30,6 +30,11 @@
                 <h:outputText value="#{plane.flightCourse.destiny}" rendered="#{not plane.editable}" />
             </h:column>
             <h:column>
+                <f:facet name="header">Date</f:facet>
+                <h:inputText value="#{plane.dateFormated}" size="10" id="date" rendered="#{plane.editable}" />
+                <h:outputText value="#{plane.dateFormated}" rendered="#{not plane.editable}" />
+            </h:column>
+            <h:column>
                     <f:facet name="header">Seats</f:facet>
                     <ui:repeat value="#{flightListBean.getMapInList(plane)}" var="seat">
                         Id:#{seat.key} Value:#{seat.value},

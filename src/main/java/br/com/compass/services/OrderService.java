@@ -86,9 +86,9 @@ public class OrderService
             addMain(mainPlanesId,originDate, fc);
         }
         addOthers(mainPlanesId.toString(), otherPlanesId, origin, destiny);
-        if(mainPlanesId.isEmpty() && otherPlanesId.isEmpty()) return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded/FlightsChoice.xhtml")).build();
-        else if(mainPlanesId.isEmpty()) return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded/FlightsChoice.xhtml?opi="+otherPlanesId)).build();
-        else if(otherPlanesId.isEmpty()) return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded/FlightsChoice.xhtml?mpi="+mainPlanesId)).build();
+        if(mainPlanesId.length()==0 && otherPlanesId.length()==0) return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded/FlightsChoice.xhtml")).build();
+        else if(mainPlanesId.length()==0 ) return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded/FlightsChoice.xhtml?opi="+otherPlanesId)).build();
+        else if(otherPlanesId.length()==0) return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded/FlightsChoice.xhtml?mpi="+mainPlanesId)).build();
         else return Response.seeOther(URI.create("http://localhost:8080/Aeroporto_war_exploded/FlightsChoice.xhtml?mpi="+mainPlanesId+"&opi="+otherPlanesId)).build();
     }
 
@@ -101,7 +101,7 @@ public class OrderService
             dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 
             if(dateFormat.format(p.getDate()).equals(originDate)){
-                if(!mainPlanesId.isEmpty()) mainPlanesId.append("-");
+                if(mainPlanesId.length()!=0) mainPlanesId.append("-");
                 mainPlanesId.append(p.getId());
             }
         }
@@ -109,9 +109,9 @@ public class OrderService
 
     public void addOthers(String mainPlanesId, StringBuilder otherPlanesId, String origin, String destiny){
         List<Plane> notFilteredList = planesDao.getFlightsByOriginOrDestiny(origin, destiny);
-        if(mainPlanesId.isEmpty()) {
+        if(mainPlanesId.length()==0) {
             for (Plane p: notFilteredList) {
-                if (!otherPlanesId.isEmpty()) otherPlanesId.append("-");
+                if (otherPlanesId.length()!=0) otherPlanesId.append("-");
                 otherPlanesId.append(p.getId());
             }
         }
@@ -128,7 +128,7 @@ public class OrderService
                     }
                 }
                 if (!check) {
-                    if (!otherPlanesId.isEmpty()) otherPlanesId.append("-");
+                    if (otherPlanesId.length()!=0) otherPlanesId.append("-");
                     otherPlanesId.append(p1.getId());
                 }
             }

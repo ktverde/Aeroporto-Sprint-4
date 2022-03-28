@@ -1,6 +1,7 @@
 package br.com.compass.services;
 
 import br.com.compass.dao.TicketDao;
+import br.com.compass.exception.MailSendException;
 import br.com.compass.models.Ticket;
 import br.com.compass.util.MailSendUtils;
 
@@ -15,7 +16,7 @@ public class MailService {
         try {
             MailSendUtils.sendEmail(ticket);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new MailSendException("Erro ao enviar email");
         }
     }
 
