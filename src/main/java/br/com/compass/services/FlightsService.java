@@ -1,10 +1,9 @@
-package br.com.compass.resources;
+package br.com.compass.services;
 
 import br.com.compass.dao.PlanesDao;
+import br.com.compass.exception.IdNotFoundedException;
 import br.com.compass.models.Plane;
-import jakarta.inject.Inject;
 
-import javax.persistence.Id;
 import java.util.List;
 
 public class FlightsService {
@@ -17,6 +16,9 @@ public class FlightsService {
     }
 
     public Plane getSelectedFlightJson(int id) {
-        return planesDao.getFlightById(id);
+        Plane plane = planesDao.getFlightById(id);
+        if(plane == null)
+            throw new IdNotFoundedException("Id not found");
+        return plane;
     }
 }

@@ -2,6 +2,7 @@ package br.com.compass.resources;
 
 
 import br.com.compass.models.Plane;
+import br.com.compass.services.FlightsService;
 import com.google.gson.Gson;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

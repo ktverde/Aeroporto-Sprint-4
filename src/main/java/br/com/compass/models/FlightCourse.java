@@ -3,7 +3,6 @@ package br.com.compass.models;
 import jakarta.validation.constraints.NotBlank;
 
 import javax.persistence.*;
-import java.util.IdentityHashMap;
 
 @Entity
 @Table(name="flightCourses")

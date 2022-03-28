@@ -1,12 +1,10 @@
 package br.com.compass.dao;
 
 
-
 import br.com.compass.factory.EManagerFactory;
 import br.com.compass.models.Ticket;
 
 import javax.persistence.EntityManager;
-import java.util.Arrays;
 import java.util.List;
 
 public class TicketDao

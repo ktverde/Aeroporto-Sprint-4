@@ -4,17 +4,11 @@ import br.com.compass.dao.PlanesDao;
 import br.com.compass.models.Plane;
 import jakarta.enterprise.inject.Model;
 import jakarta.faces.annotation.FacesConfig;
-import jakarta.faces.context.ExternalContext;
-import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.ws.rs.core.*;
-import org.jboss.weld.context.activator.ActivateRequestContext;
 
-import java.lang.annotation.Annotation;
-import java.net.URI;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @FacesConfig
 @Model

@@ -1,8 +1,9 @@
 package br.com.compass.services;
 
-import br.com.compass.util.Key;
 import br.com.compass.dao.UserDao;
 import br.com.compass.models.User;
+import br.com.compass.util.Key;
+import com.google.gson.Gson;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.ws.rs.core.NewCookie;
@@ -62,6 +63,7 @@ public class UserService {
 
     public Response listAllUsers() {
         List<User> listUsers = dao.readAll();
-        return Response.status(Response.Status.OK).entity(listUsers).build();
+        String listUsersJson = new Gson().toJson(listUsers);
+        return Response.status(Response.Status.OK).entity(listUsersJson).build();
     }
 }

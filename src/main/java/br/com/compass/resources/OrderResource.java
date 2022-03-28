@@ -58,4 +58,17 @@ public class OrderResource {
                                   @CookieParam("user") String userId) throws Exception {
         return orderService.makeTicket(planeId, seat, userId);
     }
+
+    @GET
+    @Path("/getTickets")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTickets() throws Exception {
+        return orderService.getTickets();
+    }
+    @GET
+    @Path("/getTickets/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTickets(@PathParam("id") int id) throws Exception {
+        return orderService.getTicket(id);
+    }
 }

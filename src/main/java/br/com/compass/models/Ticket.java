@@ -1,9 +1,9 @@
 package br.com.compass.models;
 
+import com.google.gson.Gson;
+
 import javax.persistence.*;
 import java.util.Date;
-import java.time.Instant;
-import java.util.Calendar;
 
 @Entity
 @Table(name="tickets")
@@ -90,9 +90,12 @@ public class Ticket {
         this.seat = seat;
     }
 
+    public String toJson() {
+        return new Gson().toJson(this);
+    }
     @Override
     public String toString() {
-        return String.format("Your Ticket:\n\t%s, %s\nid:%d\nFlight Information: %s to %s\n\t\tPlane Id:%d\n\tFlight date:%s, Seat:%d\nTicket Emission Date:%s"
+        return String.format("Your Ticket:\n\t%s, %s\nid:%d\nFlight Information: %s to %s\n\tPlane Id:%d\n\tFlight date:%s, Seat:%d\nTicket Emission Date:%s"
                 , client.getName(), client.getUsername(), client.getUserId(), flightCourse.getOrigin(), flightCourse.getDestiny(), planeId, flightDate.toString(), seat, emissionDate);
     }
 

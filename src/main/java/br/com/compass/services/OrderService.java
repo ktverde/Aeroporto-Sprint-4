@@ -4,11 +4,12 @@ import br.com.compass.dao.FlightCourseDao;
 import br.com.compass.dao.PlanesDao;
 import br.com.compass.dao.TicketDao;
 import br.com.compass.dao.UserDao;
+import br.com.compass.exception.IdNotFoundedException;
 import br.com.compass.models.FlightCourse;
 import br.com.compass.models.Plane;
 import br.com.compass.models.Ticket;
 import br.com.compass.models.User;
-import jakarta.inject.Inject;
+import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -134,5 +135,18 @@ public class OrderService
             }
         }
 
+    }
+
+    public Response getTickets() {
+        List<Ticket> tickets = ticketDao.readAll();
+        String ticketsJson = new Gson().toJson(tickets);
+        return Response.ok(ticketsJson).build();
+    }
+
+    public Response getTicket(int id) {
+        Ticket ticket = ticketDao.readId(id);
+        if(ticket == null)
+            throw new IdNotFoundedException("Id not Found");
+        return Response.ok(ticket.toJson()).build();
     }
 }

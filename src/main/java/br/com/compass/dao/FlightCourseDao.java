@@ -4,7 +4,6 @@ import br.com.compass.factory.EManagerFactory;
 import br.com.compass.models.FlightCourse;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 public class FlightCourseDao {
 

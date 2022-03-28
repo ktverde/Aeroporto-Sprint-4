@@ -1,14 +1,9 @@
 package br.com.compass.dao;
 
 import br.com.compass.factory.EManagerFactory;
-import br.com.compass.models.FlightCourse;
 import br.com.compass.models.Plane;
-import jakarta.inject.Inject;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class PlanesDao {
