@@ -15,8 +15,7 @@ import java.util.List;
 @Path("/flights")
 public class FlightsResource {
 
-
-    private FlightsService flightsService;
+    private FlightsService flightsService = new FlightsService();
 
     @Path("/")
     @GET
