@@ -19,6 +19,7 @@ public class FlightListBean {
     private Plane plane;
     private FlightCourse flightCourse = new FlightCourse();
     private List<Plane> planes = new ArrayList<>();
+    private int selectedValue;
 
     @Inject
     PlanesDao planesDao;
@@ -26,7 +27,25 @@ public class FlightListBean {
     FlightCourseDao flightCourseDao;
 
 
-    public String saveAction() {
+    public String saveAction(Plane plane){
+
+        //get all existing value but set "editable" to false
+        plane.setEditable(false);
+        FlightCourse fc = flightCourseDao.verify(flightCourse);
+        if(fc==null) {
+            flightCourseDao.save(flightCourse);
+            plane.setFlightCourse(flightCourse);
+        }
+        else {
+            plane.setFlightCourse(fc);
+        }
+        planesDao.update(plane);
+        //return to current page
+        return null;
+
+    }
+
+/*    public String saveAction() {
 
         //get all existing value but set "editable" to false
         for (Plane plane : planes){
@@ -44,21 +63,22 @@ public class FlightListBean {
         //return to current page
         return null;
 
-    }
+    }*/
 
-    public String cancelAction() {
+    public String cancelAction(Plane plane){
 
         //get all existing value but set "editable" to false
-        for (Plane plane : planes){
-            plane.setEditable(false);
-        }
+        plane.setEditable(false);
         //return to current page
         return null;
 
     }
 
     public String editAction(Plane plane) {
-        plane.setEditable(true);
+        if (!plane.isEditable())
+            plane.setEditable(true);
+        else
+            plane.setEditable(false);
         return null;
     }
 
@@ -84,6 +104,10 @@ public class FlightListBean {
         return flightCourse;
     }
 
+    public FlightCourse getPlaneFlightCourse(Plane plane){
+        return plane.getFlightCourse();
+    }
+
     public void setFlightCourse(FlightCourse flightCourse) {
         this.flightCourse = flightCourse;
     }
@@ -94,5 +118,13 @@ public class FlightListBean {
 
     public void setPlane(Plane plane) {
         this.plane = plane;
+    }
+
+    public int getSelectedValue() {
+        return selectedValue;
+    }
+
+    public void setSelectedValue(int selectedvalue) {
+        this.selectedValue = selectedvalue;
     }
 }
