@@ -21,6 +21,7 @@ public class FlightCourseDao {
 
     public FlightCourse verify(FlightCourse flightCourse) {
         try {
+            System.out.println(flightCourse);
             String jpql = "SELECT fc FROM FlightCourse as fc where fc.origin=?1 AND fc.destiny=?2";
             return em.createQuery(jpql, FlightCourse.class)
                     .setParameter(1, flightCourse.getOrigin())

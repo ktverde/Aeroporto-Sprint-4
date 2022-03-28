@@ -12,7 +12,7 @@
 </f:metadata>
 
 <h:head>
-       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
           crossorigin="anonymous"/>
@@ -28,87 +28,108 @@
             </div>
         </c:when>
         <c:when test="#{ticketBean.test2()}">
-                <div>
-                    Perdão, não encontramos nenhum voo com essa data
-                    <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/makeOrder"> Encontrre outros</a>
-                </div>
+            <div>
+                Perdão, não encontramos nenhum voo com essa data
+                <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/makeOrder"> Encontrre outros</a>
+            </div>
+            <div class="container">
                 <div>
                     <h1>Voos com mesmo destino/origem</h1>
                 </div>
-            <h:form>
-                <h:dataTable var="plane" value="#{ticketBean.otherPlanes}" varStatus="index2">
-                    <h:column>
-                        <f:facet name="header">Origin</f:facet>
-                        <h:outputText value=" #{plane.flightCourse.origin}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Destiny</f:facet>
-                        <h:outputText value="#{plane.flightCourse.destiny}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Date</f:facet>
-                        <h:outputText value="#{plane.dateFormated}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Value</f:facet>
-                        <h:outputText value="#{plane.value}"/>
-                    </h:column>
-                    <h:column>
-                        <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/chooseSeat/#{plane.id}">Buy this</a>
-                    </h:column>
-                </h:dataTable>
-            </h:form>
+                <h:form>
+                    <h:dataTable var="plane" value="#{ticketBean.otherPlanes}" varStatus="index2" styleClass="table table-bordered">
+                        <h:column>
+                            <f:facet name="header">Origin</f:facet>
+                            <h:outputText value=" #{plane.flightCourse.origin}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Destiny</f:facet>
+                            <h:outputText value="#{plane.flightCourse.destiny}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Date</f:facet>
+                            <h:outputText value="#{plane.dateFormated}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Value</f:facet>
+                            <h:outputText value="R$#{plane.value}"/>
+                        </h:column>
+                        <h:column>
+                            <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/chooseSeat/#{plane.id}">
+                                <div class="text-center">
+                                    <h:commandButton value="Buy This" type="button" styleClass="bnt btn-primary"/>
+                                </div>
+                            </a>
+                        </h:column>
+                    </h:dataTable>
+
+                </h:form>
+            </div>
         </c:when>
+
         <c:otherwise>
             <h:form>
-            <div>
-                <h1>Encontramos esses voos</h1>
-            </div>
-            <h:dataTable var="plane" value="#{ticketBean.mainPlanes}" varStatus="index1">
-                <h:column>
-                    <f:facet name="header">Origin</f:facet>
-                    <h:outputText value=" #{plane.flightCourse.origin}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Destiny</f:facet>
-                    <h:outputText value="#{plane.flightCourse.destiny}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Date</f:facet>
-                    <h:outputText value="#{plane.dateFormated}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Value</f:facet>
-                    <h:outputText value="#{plane.value}"/>
-                </h:column>
-                <h:column>
-                    <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/chooseSeat/#{plane.id}">Buy this</a>
-                </h:column>
-            </h:dataTable>
-                <div>
-                    <h1>Voos relacionados</h1>
+                <div class="container">
+                    <div>
+                        <h1>Encontramos esses voos</h1>
+                    </div>
+
+                    <h:dataTable var="plane" value="#{ticketBean.mainPlanes}" varStatus="index1" styleClass="table table-bordered">
+                        <h:column>
+                            <f:facet name="header">Origin</f:facet>
+                            <h:outputText value=" #{plane.flightCourse.origin}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Destiny</f:facet>
+                            <h:outputText value="#{plane.flightCourse.destiny}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Date</f:facet>
+                            <h:outputText value="#{plane.dateFormated}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Value</f:facet>
+                            <h:outputText value="R$#{plane.value}"/>
+                        </h:column>
+                        <h:column>
+                            <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/chooseSeat/#{plane.id}">
+                                <div class="text-center">
+                                    <h:commandButton value="Buy This" type="button" styleClass="bnt btn-primary"/>
+                                </div>
+                            </a>
+                        </h:column>
+                    </h:dataTable>
                 </div>
-                <h:dataTable var="plane" value="#{ticketBean.otherPlanes}" varStatus="index2">
-                    <h:column>
-                        <f:facet name="header">Origin</f:facet>
-                        <h:outputText value=" #{plane.flightCourse.origin}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Destiny</f:facet>
-                        <h:outputText value="#{plane.flightCourse.destiny}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Date</f:facet>
-                        <h:outputText value="#{plane.dateFormated}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Value</f:facet>
-                        <h:outputText value="#{plane.value}"/>
-                    </h:column>
-                    <h:column>
-                        <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/chooseSeat/#{plane.id}">Buy this</a>
-                    </h:column>
-                </h:dataTable>
+                <div class="container">
+                    <div>
+                        <h1>Voos relacionados</h1>
+                    </div>
+                    <h:dataTable var="plane" value="#{ticketBean.otherPlanes}" varStatus="index2" styleClass="table table-bordered">
+                        <h:column>
+                            <f:facet name="header">Origin</f:facet>
+                            <h:outputText value=" #{plane.flightCourse.origin}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Destiny</f:facet>
+                            <h:outputText value="#{plane.flightCourse.destiny}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Date</f:facet>
+                            <h:outputText value="#{plane.dateFormated}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Value</f:facet>
+                            <h:outputText value="R$#{plane.value}"/>
+                        </h:column>
+                        <h:column>
+                            <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/chooseSeat/#{plane.id}">
+                                <div class="text-center">
+                                    <h:commandButton value="Buy This" type="button" styleClass="bnt btn-primary"/>
+                                </div>
+                            </a>
+                        </h:column>
+                    </h:dataTable>
+                </div>
             </h:form>
 
         </c:otherwise>
