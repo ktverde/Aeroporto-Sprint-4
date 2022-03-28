@@ -22,13 +22,13 @@
 <h:body>
     <c:choose>
         <c:when test="#{ticketBean.test1()}">
-            <div>
+            <div class="container">
                 Perdão, não encontramos nenhum voo
                 <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/makeOrder"> Encontrre outros</a>
             </div>
         </c:when>
         <c:when test="#{ticketBean.test2()}">
-            <div>
+            <div class="container">
                 Perdão, não encontramos nenhum voo com essa data
                 <a href="http://localhost:8080/Aeroporto_war_exploded/api/order/makeOrder"> Encontrre outros</a>
             </div>

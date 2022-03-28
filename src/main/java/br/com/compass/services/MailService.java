@@ -13,6 +13,7 @@ public class MailService {
 
     public void sendMail(String idTicket){
         Ticket ticket = ticketDao.readId(Integer.parseInt(idTicket));
+        System.out.println("\n\n\nTicket: " + ticket.toString()+"\n\n\n");
         try {
             MailSendUtils.sendEmail(ticket);
         } catch (IOException e) {

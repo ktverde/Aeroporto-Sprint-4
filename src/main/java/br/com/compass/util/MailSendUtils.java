@@ -18,11 +18,10 @@ public class MailSendUtils {
 
         Email from = new Email("sup.apairlines@gmail.com");
         String subject = "Your ticket is here!";
-        ticket.getClient().getEmail();
+        System.out.println(ticket.toString());
         Email to = new Email(ticket.getClient().getEmail());
         Content content = new Content("text/plain", ticket.toString());
         Mail mail = new Mail(from, subject, to, content);
-        System.out.println(System.getenv("SENDGRID_API_KEY"));
         SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
         Request request = new Request();
         try {

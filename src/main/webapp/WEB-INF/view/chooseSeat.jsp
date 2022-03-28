@@ -14,13 +14,13 @@
     <div class = "container" style="text-align-all: center">
         <div class="row">
             <div >
-                <form action="<%=request.getContextPath()%>/api/order/makeTicket" method="POST" accept-charset="ISO-8859-1">
+                <form action="<%=request.getContextPath()%>/api/order/makeTicket" method="POST" accept-charset="UTF-8">
                     <div class="form-group">
                         <hr color="silver">
                         <h2>Choose your seat</h2>
                     </div>
                     <div class="form-group">
-                        <label>${plane.flightCourse.origin} to ${plane.flightCourse.destiny}:</label>
+                        <label class="title">${plane.flightCourse.origin} to ${plane.flightCourse.destiny}:</label>
                         <select class="form-select" name="seat" required>
                             <option selected>Select</option>
                             <c:forEach items="${seatList}" var="seat">
