@@ -45,6 +45,25 @@ Administrador
 	
 ![FlightList](https://raw.githubusercontent.com/ktverde/Aeroporto-Sprint-4/master/README_imgs/Flighs%20List.png)
 
+----------------------------------------------------------
+
+	Para utilizar o envio dos emails, o administrador deverá configurar
+	uma variável de ambiente em seu próprio sistema, com a key da Api
+	utilizada, por questões de segurança, exigida pelos desenvolvedores da Api externa.
+	
+----------------------------------------------------------
+	Exemplo:
+	
+	setx SENDGRID_API_KEY the_key_you_copied_from_SendGrid
+
+	E, no código, utilizaremos:
+	
+	apiKey = System.getenv("SENDGRID_API_KEY");
+-----------------------------------------------------------
+	
+	Para testes do programa, é necessário ter uma chave no site do SendGrid.
+https://docs.sendgrid.com/pt-br/
+
 --------------------------
 Usuario
 --------------------------
