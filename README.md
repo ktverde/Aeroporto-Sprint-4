@@ -75,7 +75,7 @@ Usuario
 ![Login](https://raw.githubusercontent.com/ktverde/Aeroporto-Sprint-4/master/README_imgs/Login.png)
 
 	Logo após, seguirá os procedimentos da aplicação.
-	Seqgue abaixo um fluxo de telas, para o usuário efetuar uma compra.
+	Segue abaixo um fluxo de telas, para o usuário efetuar uma compra.
 	
 ![BuyTicket](https://raw.githubusercontent.com/ktverde/Aeroporto-Sprint-4/master/README_imgs/Buy%20Ticket.png)
 
