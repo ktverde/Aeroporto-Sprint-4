@@ -19,13 +19,19 @@ Como utilizar
 	senha = root;
 	
 	O sistema irá criar as tabelas automaticamente.
--------------------------------------------------------------------------------------
+	
+--------------------------
+Administrador
+--------------------------
+
 	Primeiramente, o administrador do sistema deve acessar o formulario:
 
 		http://localhost:8080/Aeroporto_war_exploded/Flights.xhtml
 
 	OBS: Data deve seguir o formato <"yyyy-MM-dd HH:mm:ss">
-
+	
+	![Flights](https://github.com/ktverde/Aeroporto-Sprint-4/blob/master/README_imgs/Flights.png)
+	
 	Após cadastrar alguns voos, o sistema está funcional
 
 --------------------------
