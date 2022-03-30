@@ -31,7 +31,7 @@ Como utilizar
 Administrador
 --------------------------
 
-	Primeiramente, o administrador do sistema deve acessar o formulario:
+	Primeiramente, o administrador do sistema deve acessar o formulario e cadastrar alguns voos:
 
 		http://localhost:8080/Aeroporto_war_exploded/Flights.xhtml
 
